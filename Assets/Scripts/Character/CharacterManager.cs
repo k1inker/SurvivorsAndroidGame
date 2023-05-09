@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public CharacterStatsManager characterStatsManager { get; private set; }
+    public CharacterLocomotionManager characterLocomotionManager { get; private set; }
+    public CharacterAnimatorManager characterAnimatorManager { get; private set; }
+    public SpriteRenderer characterRenderer { get; private set; }
+    protected virtual void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        characterStatsManager = GetComponent<CharacterStatsManager>();
+        characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
+        characterRenderer = GetComponent<SpriteRenderer>();
+        characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
     }
 }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyStatsManager : CharacterStatsManager
 {
-    private void Awake()
+    protected override void Awake()
     {
-        
+        base.Awake();
     }
     public override void TakeDamage(float countDamage)
     {

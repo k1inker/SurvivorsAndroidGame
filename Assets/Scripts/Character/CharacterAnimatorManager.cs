@@ -11,4 +11,8 @@ public class CharacterAnimatorManager : MonoBehaviour
     {
         animator.SetBool(ConstantName.AnimatorParametrs.IsMoving, isMove);
     }
+    public virtual void PlayAnimation(string anim)
+    {
+        animator.Play(anim);
+    }
 }
