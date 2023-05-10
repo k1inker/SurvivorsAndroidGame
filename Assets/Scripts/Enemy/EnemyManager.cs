@@ -31,13 +31,6 @@ public class EnemyManager : CharacterManager
     {
         enemyLocomotion.HandelMovment(_targetVector);
     }
-    private void UpdateInfoTarget()
-    {
-        if(_currentTarget != null)
-        {
-            _targetVector = _currentTarget.transform.position - transform.position;
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -48,7 +41,6 @@ public class EnemyManager : CharacterManager
             }
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -60,7 +52,17 @@ public class EnemyManager : CharacterManager
             }
         }
     }
-
+    private void UpdateInfoTarget()
+    {
+        if(_currentTarget != null)
+        {
+            _targetVector = _currentTarget.transform.position - transform.position;
+        }
+    }
+    public void SetTargetNull()
+    {
+        _currentTarget = null;
+    }
     private IEnumerator DealingDamage()
     {
         while (true)

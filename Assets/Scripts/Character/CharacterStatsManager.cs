@@ -29,6 +29,5 @@ public class CharacterStatsManager : MonoBehaviour
     public virtual void HandlerDeath()
     {
         _character.characterAnimatorManager.PlayAnimation(ConstantName.Animation.Death);
-        Invoke(nameof(gameObject.Destroy), 2f);
     }
 }

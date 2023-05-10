@@ -7,14 +7,14 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
     [SerializeField] public float collisionOffset;
     [SerializeField] private ContactFilter2D contactFilter;
 
-    public Rigidbody2D _rb;
+    public Rigidbody2D rb;
     private CapsuleCollider2D _capsuleCollider;
     private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     private CharacterManager _character;
     protected virtual void Awake()
     {
         _capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         _character = GetComponent<CharacterManager>();
     }
     public virtual void HandelMovment(Vector2 moveVector)
@@ -60,7 +60,7 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
 
         if (count == 0)
         {
-            _rb.MovePosition(_rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
             return true;
         }
         else

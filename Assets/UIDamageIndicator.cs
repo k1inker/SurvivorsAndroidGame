@@ -1,20 +1,25 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class UIDamageIndicator : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textDamageIndicator;
-
+    [SerializeField] private GameObject textDamageIndicator;
+    public static UIDamageIndicator Instance;
     private void Awake()
     {
-        textDamageIndicator = GetComponentInChildren<TextMeshProUGUI>();
+        Instance = this;
     }
-    private void Start()
+    public void SpawnIndicator(Vector2 pointSpawn, int countDamage)
     {
-        GetComponentInParent<EnemyStatsManager>().onDamageEnemy += SetTextDamageIndicator;
+        GameObject indicator = Instantiate(textDamageIndicator, pointSpawn, Quaternion.identity);
+        indicator.transform.SetParent(transform);
+        indicator.GetComponent<TextMeshProUGUI>().text = countDamage.ToString();
+        StartCoroutine(DestroyIndicator(indicator));
     }
-    private void SetTextDamageIndicator(int countDamage)
+    public IEnumerator DestroyIndicator(GameObject indicator)
     {
-        textDamageIndicator.text = countDamage.ToString();
+        yield return new WaitForSeconds(1f);
+        Destroy(indicator.gameObject);
     }
 }
