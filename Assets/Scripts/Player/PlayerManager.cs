@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : CharacterManager
@@ -15,6 +18,10 @@ public class PlayerManager : CharacterManager
             return _instance;
         } 
     }
+
+    [Header("PlayerAttackSettings")]
+    public List<Weapon> weapons;
+    public Vector2 lookDirection { get; private set; } = Vector2.down;
     protected override void Awake()
     {
         base.Awake();
@@ -23,12 +30,30 @@ public class PlayerManager : CharacterManager
         playerStatsManager = GetComponent<PlayerStatsManager>();
         uiManager = GetComponentInChildren<UIManager>();
     }
+    private void Start()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            StartCoroutine(Attack(weapon));
+        }
+    }
     private void Update()
     {
         inputHandler.TickInput();
+
+        if(inputHandler.moveInput != Vector2.zero)
+           lookDirection = inputHandler.moveInput;
     }
     private void FixedUpdate()
     {
         playerLocomotion.HandelMovment(inputHandler.moveInput.normalized);
+    }
+    private IEnumerator Attack(Weapon currentWeapon)
+    {
+        while (true)
+        {
+            currentWeapon.SpawnWeapon(Instance);
+            yield return new WaitForSeconds(currentWeapon.reloadDelay);
+        }
     }
 }

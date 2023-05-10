@@ -13,7 +13,7 @@ public class CharacterStatsManager : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-    public virtual void TakeDamage(float countDamage)
+    public virtual void TakeDamage(int countDamage)
     {
         _character.characterAnimatorManager.PlayAnimation(ConstantName.Animation.Damage);
         if (currentHealth - countDamage > 0)

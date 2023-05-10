@@ -14,7 +14,7 @@ public class PlayerStatsManager : CharacterStatsManager
         _player.uiManager.SetMaxHealthValue(maxHealth);
         _player.uiManager.SetHealthValue(currentHealth);
     }
-    public override void TakeDamage(float countDamage)
+    public override void TakeDamage(int countDamage)
     {
         base.TakeDamage(countDamage);
         _player.uiManager.SetHealthValue(currentHealth);
