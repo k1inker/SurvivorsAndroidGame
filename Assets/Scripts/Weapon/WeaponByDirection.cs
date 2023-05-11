@@ -8,6 +8,10 @@ public class WeaponByDirection : Weapon
     {
         GameObject weapon = Instantiate(bulletPrefab, player.transform.position, Quaternion.identity);
         weapon.GetComponent<Rigidbody2D>().velocity = player.lookDirection * speedWeapon;
-        weapon.GetComponent<DirectionPathHandler>().damage = damageWeapon;
+        BulletSettings(weapon);
+    }
+    protected override void BulletSettings(GameObject weapon)
+    {
+        base.BulletSettings(weapon);
     }
 }

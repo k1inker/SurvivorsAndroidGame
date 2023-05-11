@@ -13,6 +13,7 @@ public class EnemyStatsManager : CharacterStatsManager
         base.TakeDamage(countDamage);
         UIDamageIndicator.Instance.SpawnIndicator(transform.position, countDamage);
     }
+
     public override void HandlerDeath()
     {
         base.HandlerDeath();

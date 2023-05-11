@@ -68,4 +68,9 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
             return false;
         }
     }
+    public void KnockBack(Vector2 direction, float knockbackForce)
+    {
+        rb.AddForceAtPosition(direction * knockbackForce, rb.position);
+        //rb.MovePosition(rb.position + direction * knockbackForce * Time.fixedDeltaTime);
+    }
 }

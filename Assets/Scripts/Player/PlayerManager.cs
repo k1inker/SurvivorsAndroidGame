@@ -47,6 +47,18 @@ public class PlayerManager : CharacterManager
     private void FixedUpdate()
     {
         playerLocomotion.HandelMovment(inputHandler.moveInput.normalized);
+        PathBulletConroler();
+    }
+    private void PathBulletConroler()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon is IWeapon)
+            {
+                IWeapon iWeapon = (IWeapon)weapon;
+                iWeapon.PathBullet();
+            }
+        }
     }
     private IEnumerator Attack(Weapon currentWeapon)
     {
