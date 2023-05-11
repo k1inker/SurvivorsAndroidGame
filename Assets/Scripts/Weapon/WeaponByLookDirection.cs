@@ -1,8 +1,8 @@
 using UnityEngine;
 
 // for weapons that shoot ahead of the player
-[CreateAssetMenu(menuName ="Weapon/DirectionWeapon")]
-public class WeaponByDirection : Weapon
+[CreateAssetMenu(menuName ="Weapon/LookDirectionWeapon")]
+public class WeaponByLookDirection : Weapon
 {
     public override void SpawnWeapon(PlayerManager player)
     {

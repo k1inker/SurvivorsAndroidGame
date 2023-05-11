@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - DamageCollider
+  - Enemy
   - ColliderPlayer
   - ColliderEnemy
   - 
