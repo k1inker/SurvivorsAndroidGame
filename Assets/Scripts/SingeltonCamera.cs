@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class SingeltonCamera : MonoBehaviour
 {
+    private static Camera _currentCamera;
     public static Camera currentCamera
     {
         get
         {
-            if(currentCamera == null)
+            if(_currentCamera == null)
             {
-                currentCamera = Camera.main;
+                _currentCamera = Camera.main;
             }
-            return currentCamera;
+            return _currentCamera;
         }
-        private set { }
     }
 }

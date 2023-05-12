@@ -5,12 +5,12 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
 {
     public float moveSpeed;
     [SerializeField] public float collisionOffset;
-    [SerializeField] private ContactFilter2D contactFilter;
+    [SerializeField] protected ContactFilter2D contactFilter;
 
     public Rigidbody2D rb;
-    private CapsuleCollider2D _capsuleCollider;
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    private CharacterManager _character;
+    protected CapsuleCollider2D _capsuleCollider;
+    protected List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    protected CharacterManager _character;
     protected virtual void Awake()
     {
         _capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
@@ -47,7 +47,8 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
             _character.characterRenderer.flipX = false;
         }
     }
-    protected bool TryMove(Vector2 direction)
+    // locomotion for kinematics object
+    private bool TryMove(Vector2 direction)
     {
         if (direction == Vector2.zero)
         {
@@ -60,7 +61,7 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
 
         if (count == 0)
         {
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
             return true;
         }
         else
@@ -70,7 +71,8 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
     }
     public void KnockBack(Vector2 direction, float knockbackForce)
     {
-        rb.AddForceAtPosition(direction * knockbackForce, rb.position * Time.fixedDeltaTime);
+        rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
+        //rb.AddRelativeForce(direction * knockbackForce, ForceMode2D.Impulse);
         //rb.MovePosition(rb.position + direction * knockbackForce * Time.fixedDeltaTime);
     }
 }

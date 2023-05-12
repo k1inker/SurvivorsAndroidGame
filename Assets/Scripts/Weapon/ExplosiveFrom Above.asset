@@ -18,7 +18,7 @@ MonoBehaviour:
   damageWeapon: 5
   speedWeapon: 0.3
   timeAlive: 5
-  pushBackForce: 5000
+  pushBackForce: 0
   bulletPrefab: {fileID: 4915317703386542373, guid: d5e40272291e4d3419d7c6ce861b171a,
     type: 3}
   _radiusPotentialDrop: 2
