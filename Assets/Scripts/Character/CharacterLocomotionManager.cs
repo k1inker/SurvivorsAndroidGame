@@ -70,7 +70,7 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
     }
     public void KnockBack(Vector2 direction, float knockbackForce)
     {
-        rb.AddForceAtPosition(direction * knockbackForce, rb.position);
+        rb.AddForceAtPosition(direction * knockbackForce, rb.position * Time.fixedDeltaTime);
         //rb.MovePosition(rb.position + direction * knockbackForce * Time.fixedDeltaTime);
     }
 }

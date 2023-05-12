@@ -28,14 +28,14 @@ public class WeaponCircular : Weapon, IWeapon
     {
         Vector3 spawnPoint = player.transform.position + new Vector3(0f, _offsetRadius, 0f);
         _player = player;
-        GameObject weapon = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity);
-        _rb = weapon.GetComponent<Rigidbody2D>();
+        GameObject projectile = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity);
+        _rb = projectile.GetComponent<Rigidbody2D>();
         _startTime = Time.time;
-        BulletSettings(weapon);
+        ProjectileSettings(projectile);
     }
 
-    protected override void BulletSettings(GameObject weapon)
+    protected override void ProjectileSettings(GameObject weapon)
     {
-        base.BulletSettings(weapon);
+        base.ProjectileSettings(weapon);
     }
 }

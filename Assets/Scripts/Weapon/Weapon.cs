@@ -16,17 +16,11 @@ public abstract class Weapon : ScriptableObject
     [Header("Prefab")]
     [SerializeField] protected GameObject bulletPrefab;
     public abstract void SpawnWeapon(PlayerManager player);
-    protected virtual void BulletSettings(GameObject weapon)
+    protected virtual void ProjectileSettings(GameObject weapon)
     {
-        DamageCollision settingsBullet = weapon.GetComponent<DamageCollision>();
+        Projectile projectile = weapon.GetComponent<Projectile>();
 
-        settingsBullet.isThrough = isThrough;
-        settingsBullet.isPushBack = isPushBack;
-
-        settingsBullet.damage = damageWeapon;
-        settingsBullet.pushBackForce = pushBackForce;
-
-        settingsBullet.DestoyTimer(timeAlive);
+        projectile.SettingsProjectile(damageWeapon, isThrough, isPushBack, pushBackForce, timeAlive);
     }
 }
 public interface IWeapon

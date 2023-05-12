@@ -8,10 +8,10 @@ public class WeaponByLookDirection : Weapon
     {
         GameObject weapon = Instantiate(bulletPrefab, player.transform.position, Quaternion.identity);
         weapon.GetComponent<Rigidbody2D>().velocity = player.lookDirection * speedWeapon;
-        BulletSettings(weapon);
+        ProjectileSettings(weapon);
     }
-    protected override void BulletSettings(GameObject weapon)
+    protected override void ProjectileSettings(GameObject weapon)
     {
-        base.BulletSettings(weapon);
+        base.ProjectileSettings(weapon);
     }
 }
