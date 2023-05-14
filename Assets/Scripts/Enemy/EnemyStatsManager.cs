@@ -1,17 +1,27 @@
+using System;
 using UnityEngine;
+using Zenject;
 
 public class EnemyStatsManager : CharacterStatsManager
 {
+    public Action<Vector2, int> OnTakeDamageEnemy;
+    
+    [Inject] private UIDamageIndicator _indicator;
+
     private EnemyManager _enemy;
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         _enemy = GetComponent<EnemyManager>();
+    }
+    protected override void Start()
+    {
+        base.Start();
+        OnTakeDamageEnemy += _indicator.SpawnIndicator;
     }
     public override void TakeDamage(int countDamage)
     {
+        OnTakeDamageEnemy?.Invoke(transform.position,countDamage);
         base.TakeDamage(countDamage);
-        UIDamageIndicator.Instance.SpawnIndicator(transform.position, countDamage);
     }
 
     public override void HandlerDeath()

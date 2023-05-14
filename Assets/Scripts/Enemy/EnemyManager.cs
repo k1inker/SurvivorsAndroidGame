@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class EnemyManager : CharacterManager
 {
@@ -12,7 +13,7 @@ public class EnemyManager : CharacterManager
     [SerializeField] private float _rateDamage = 0.5f;
 
     [Header("Information Target")]
-    [SerializeField] private PlayerManager _currentTarget;
+    [Inject] private PlayerManager _currentTarget;
     [SerializeField] private Vector2 _targetVector;
 
     private Coroutine dealingDamageCoroutine;
@@ -21,7 +22,6 @@ public class EnemyManager : CharacterManager
         base.Awake();
         enemyStats = GetComponent<EnemyStatsManager>();
         enemyLocomotion = GetComponent<EnemyLocomotionManager>();
-        _currentTarget = PlayerManager.Instance;
     }
     private void Update()
     {
@@ -67,7 +67,7 @@ public class EnemyManager : CharacterManager
     {
         while (true)
         {
-            PlayerManager.Instance.playerStatsManager.TakeDamage(_damage);
+            _currentTarget.playerStatsManager.TakeDamage(_damage);
             yield return new WaitForSeconds(_rateDamage);
         }
     }

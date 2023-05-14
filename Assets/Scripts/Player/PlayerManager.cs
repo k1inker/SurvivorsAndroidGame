@@ -9,15 +9,6 @@ public class PlayerManager : CharacterManager
     public PlayerLocomotion playerLocomotion { get; private set; }
     public PlayerStatsManager playerStatsManager { get; private set; }
     public UIManager uiManager { get; private set; }
-    //singelton
-    private static PlayerManager _instance;
-    public static PlayerManager Instance { 
-        get {  
-            if(_instance==null) 
-                _instance = FindObjectOfType<PlayerManager>();
-            return _instance;
-        } 
-    }
 
     [Header("PlayerAttackSettings")]
     public List<Weapon> weapons;
@@ -64,7 +55,7 @@ public class PlayerManager : CharacterManager
     {
         while (true)
         {
-            currentWeapon.SpawnWeapon(Instance);
+            currentWeapon.SpawnWeapon(this);
             yield return new WaitForSeconds(currentWeapon.reloadDelay);
         }
     }

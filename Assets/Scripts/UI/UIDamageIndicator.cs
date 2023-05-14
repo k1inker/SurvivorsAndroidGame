@@ -5,11 +5,6 @@ using UnityEngine;
 public class UIDamageIndicator : MonoBehaviour
 {
     [SerializeField] private GameObject textDamageIndicator;
-    public static UIDamageIndicator Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
     public void SpawnIndicator(Vector2 pointSpawn, int countDamage)
     {
         GameObject indicator = Instantiate(textDamageIndicator, pointSpawn, Quaternion.identity);

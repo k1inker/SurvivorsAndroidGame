@@ -3,8 +3,8 @@ using UnityEngine;
 public class ExplosiveProjectile : Projectile
 {
     [SerializeField] private LayerMask _enemylayerMask;
-    
-    private float _radiusExplosion;
+
+    [SerializeField] private float _radiusExplosion;
     private void Awake()
     {
         if(isThrough)
@@ -17,24 +17,25 @@ public class ExplosiveProjectile : Projectile
         base.SettingsProjectile(damage, isThrough, isPushBack, pushBackForce, timeAlive);
         _radiusExplosion = radiusExplosion;
     }
-    public void Explosion()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        foreach(Collider2D collider in Physics2D.OverlapCircleAll(transform.position, _radiusExplosion, _enemylayerMask))
+        if (collision.tag == ConstantName.Tags.Enemy)
+        {
+            ActionAtTheDestinationPoint();
+        }
+    }
+
+    public override void ActionAtTheDestinationPoint()
+    {
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, _radiusExplosion, _enemylayerMask))
         {
             CharacterManager character = collider.GetComponent<CharacterManager>();
-            if(isPushBack)
+            if (isPushBack)
             {
                 character.characterLocomotionManager.KnockBack(character.transform.position - transform.position, pushBackForce);
             }
             character.characterStatsManager.TakeDamage(damage);
         }
         DestoyProjectile();
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == ConstantName.Tags.Enemy)
-        {
-            Explosion();
-        }
     }
 }

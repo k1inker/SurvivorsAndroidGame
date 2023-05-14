@@ -9,7 +9,7 @@ public class WeaponFromAbove : Weapon, IWeapon
 
     private Vector2 _destinationPoint;
     private Rigidbody2D _rb;
-    private ExplosiveProjectile _projectile;
+    private Projectile _projectile;
     public void PathBullet()
     {
         if(_rb == null)
@@ -21,7 +21,7 @@ public class WeaponFromAbove : Weapon, IWeapon
 
         if(_rb.transform.position.y <= _destinationPoint.y)
         {
-            _projectile.Explosion();
+            _projectile.ActionAtTheDestinationPoint();
         }
     }
 
@@ -39,7 +39,7 @@ public class WeaponFromAbove : Weapon, IWeapon
 
         //settings explosive projectile
         _rb = projectile.GetComponent<Rigidbody2D>();
-        _projectile = projectile.GetComponent<ExplosiveProjectile>();
-        _projectile.SettingsProjectile(damageWeapon, isThrough, isPushBack, pushBackForce, timeAlive, _radiusExplosion);
+        _projectile = projectile.GetComponent<Projectile>();
+        _projectile.SettingsProjectile(damageWeapon, isThrough, isPushBack, pushBackForce, timeAlive);
     }
 }

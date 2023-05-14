@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Zenject;
+
 public class WaveManager : MonoBehaviour
 {
+    [Inject] private Camera _mainCamera;
+    [Inject] private DiContainer _container;
+
     [SerializeField] private float _timeCurrentWave;
     [SerializeField] private WaveItem waveItem;
+
     public float offset = 3f;
     private void Start()
     {
@@ -19,12 +25,10 @@ public class WaveManager : MonoBehaviour
     }
     private void RandomPositionOutsideScreen()
     {
-        Camera mainCamera = SingeltonCamera.currentCamera;
-
         for (int i = 0; i < waveItem.countEnemyPerWave; i++)
         {
-            Vector3 spawnPosition = GetRandomSidePosition(Random.Range(0, 4),mainCamera);
-            Instantiate(waveItem.typeEnemy, spawnPosition, Quaternion.identity);
+            Vector3 spawnPosition = GetRandomSidePosition(Random.Range(0, 4), _mainCamera);
+            _container.InstantiatePrefab(waveItem.typeEnemy, spawnPosition, Quaternion.identity,null);
         }
     }
     private Vector3 GetRandomSidePosition(int choice,Camera mainCamera)

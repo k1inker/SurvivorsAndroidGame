@@ -1,11 +1,12 @@
-using UnityEngine;
+using System;
 
 public class PlayerStatsManager : CharacterStatsManager
 {
     private PlayerManager _player;
-    protected override void Awake()
+
+    public Action<int> OnTakeDamagePlayer;
+    protected void Awake()
     {
-        base.Awake();
         _player = GetComponent<PlayerManager>();
     }
     protected override void Start()
@@ -17,10 +18,7 @@ public class PlayerStatsManager : CharacterStatsManager
     public override void TakeDamage(int countDamage)
     {
         base.TakeDamage(countDamage);
-        _player.uiManager.SetHealthValue(currentHealth);
-    }
-    public override void HandlerDeath()
-    {
-        _player.characterAnimatorManager.PlayAnimation(ConstantName.Animation.Death);
+
+        OnTakeDamagePlayer?.Invoke(currentHealth);
     }
 }

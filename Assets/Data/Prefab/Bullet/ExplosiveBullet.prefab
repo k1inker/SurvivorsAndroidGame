@@ -140,3 +140,4 @@ MonoBehaviour:
   _enemylayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _radiusExplosion: 2

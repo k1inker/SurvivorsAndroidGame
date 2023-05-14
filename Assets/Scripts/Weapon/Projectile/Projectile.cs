@@ -14,6 +14,7 @@ public abstract class Projectile : MonoBehaviour
         this.pushBackForce = pushBackForce;
         DestoyTimer(timeAlive);
     }
+    public abstract void ActionAtTheDestinationPoint();
     private void DestoyTimer(float time)
     {
         Invoke(nameof(DestoyProjectile), time);
