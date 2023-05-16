@@ -8,11 +8,7 @@ public class EnemyStatsManager : CharacterStatsManager
     
     [Inject] private UIDamageIndicator _indicator;
 
-    private EnemyManager _enemy;
-    protected void Awake()
-    {
-        _enemy = GetComponent<EnemyManager>();
-    }
+    public Action OnEnemyDeath;
     protected override void Start()
     {
         base.Start();
@@ -27,7 +23,7 @@ public class EnemyStatsManager : CharacterStatsManager
     public override void HandlerDeath()
     {
         base.HandlerDeath();
-        _enemy.SetTargetNull();
+        OnEnemyDeath?.Invoke();
         Invoke(nameof(DestroyEnemy), 1f);
     }
     private void DestroyEnemy()

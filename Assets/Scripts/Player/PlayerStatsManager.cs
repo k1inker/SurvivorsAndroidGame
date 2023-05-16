@@ -2,23 +2,18 @@ using System;
 
 public class PlayerStatsManager : CharacterStatsManager
 {
-    private PlayerManager _player;
-
-    public Action<int> OnTakeDamagePlayer;
-    protected void Awake()
-    {
-        _player = GetComponent<PlayerManager>();
-    }
+    public Action<int> OnHealthChange;
+    public Action<int> OnMaxHealthChange;
     protected override void Start()
     {
         base.Start();
-        _player.uiManager.SetMaxHealthValue(maxHealth);
-        _player.uiManager.SetHealthValue(currentHealth);
+        OnMaxHealthChange?.Invoke(maxHealth);
+        OnHealthChange?.Invoke(currentHealth);
     }
     public override void TakeDamage(int countDamage)
     {
         base.TakeDamage(countDamage);
 
-        OnTakeDamagePlayer?.Invoke(currentHealth);
+        OnHealthChange?.Invoke(currentHealth);
     }
 }

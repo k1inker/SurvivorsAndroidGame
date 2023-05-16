@@ -14,8 +14,9 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
     protected List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     protected CharacterManager _character;
 
-    private bool hasUnchangingPath = false;
+    private Vector2 directionPush;
     private float knockbackForce;
+    private bool hasUnchangingPath = false;
     protected virtual void Awake()
     {
         _capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
@@ -31,7 +32,15 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
         }
         else
         {
-            float speed = hasUnchangingPath ? knockbackForce:moveSpeed;
+            // logic pushingBack
+            float speed = moveSpeed;
+
+            if (hasUnchangingPath)
+            {
+                speed = knockbackForce;
+                moveVector = directionPush;
+            }
+
             bool isMove = TryMove(moveVector,speed);
             if (!isMove)
             {
@@ -63,11 +72,11 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
         int count = _capsuleCollider.Cast(direction,
                         contactFilter,
                         castCollisions,
-                        moveSpeed * Time.fixedDeltaTime + collisionOffset);
+                        moveSpeed * Time.deltaTime + collisionOffset);
 
         if (count == 0)
         {
-            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
             return true;
         }
         else
@@ -77,14 +86,14 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
     }
     public void KnockBack(Vector2 direction, float knockbackForce)
     {
-        rb.MovePosition(rb.position + direction * knockbackForce * Time.fixedDeltaTime);
         hasUnchangingPath = true;
+        directionPush = direction;
         this.knockbackForce = knockbackForce;
         StartCoroutine(KnockBackShock());
     }
     private IEnumerator KnockBackShock()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.15f);
         hasUnchangingPath = false;
     }
 }

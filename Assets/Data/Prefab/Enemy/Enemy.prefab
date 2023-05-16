@@ -100,7 +100,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3074315710085662273}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -127,8 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 1
   _rateDamage: 0.5
-  _currentTarget: {fileID: 0}
   _targetVector: {x: 0, y: 0}
+  _prefabLevelParticle: {fileID: 1682020701594704058, guid: 7f7b6bf5a56eae24197537a4ea844982,
+    type: 3}
 --- !u!114 &3074315710085662280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bd32d3ab36ec84dafb7a0d27b719ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
+  rb: {fileID: 0}
   collisionOffset: 0.1
   contactFilter:
     useTriggers: 0
@@ -157,7 +159,6 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  rb: {fileID: 0}
 --- !u!114 &3074315710085662279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 200
+  maxHealth: 10
 --- !u!95 &3074315710085662282
 Animator:
   serializedVersion: 5

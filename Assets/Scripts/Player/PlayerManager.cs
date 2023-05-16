@@ -8,6 +8,7 @@ public class PlayerManager : CharacterManager
     public InputHandler inputHandler { get; private set; }
     public PlayerLocomotion playerLocomotion { get; private set; }
     public PlayerStatsManager playerStatsManager { get; private set; }
+    public PlayerLevelManager playerLevelManager { get; private set; }
     public UIManager uiManager { get; private set; }
 
     [Header("PlayerAttackSettings")]
@@ -19,6 +20,7 @@ public class PlayerManager : CharacterManager
         inputHandler = GetComponent<InputHandler>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerLevelManager = GetComponent<PlayerLevelManager>();
         uiManager = GetComponentInChildren<UIManager>();
     }
     private void Start()
