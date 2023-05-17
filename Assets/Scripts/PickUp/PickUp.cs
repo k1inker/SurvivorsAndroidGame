@@ -1,13 +1,12 @@
 using UnityEngine;
 
-public class LevelParticle : MonoBehaviour
+public class PickUp : MonoBehaviour
 {
-    [SerializeField] private ushort value;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == ConstantName.Tags.Player)
         {
-            collision.GetComponent<PlayerLevelManager>().IncreaseExperienceValue(value);
+            GetComponent<IPickUp>().PickUpAction(collision.GetComponent<PlayerManager>());
             Destroy(gameObject);
         }
     }

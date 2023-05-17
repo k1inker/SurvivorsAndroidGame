@@ -1,14 +1,11 @@
 using UnityEngine;
+using Zenject;
 
 public class InputHandler : MonoBehaviour
 {
     public Vector2 moveInput { get; private set; }
 
-    private Joystick _joystick;
-    private void Awake()
-    {
-        _joystick = GetComponentInChildren<Joystick>();
-    }
+    [Inject] private Joystick _joystick;
     public void TickInput()
     {
         MoveInputJoystick();

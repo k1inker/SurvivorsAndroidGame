@@ -43,21 +43,21 @@ public class WaveManager : MonoBehaviour
         if (choice == 0) // spawn left
         {
             x = Random.Range(cameraLeftBorderPoint - offset, cameraLeftBorderPoint);
-            y = Random.Range(cameraDownBorderPoint, cameraTopBorderPoint);
+            y = Random.Range(cameraDownBorderPoint - offset, cameraTopBorderPoint + offset);
         }
         else if (choice == 1) // spawn top
         {
-            x = Random.Range(cameraLeftBorderPoint, cameraRightBorderPoint);
+            x = Random.Range(cameraLeftBorderPoint - offset, cameraRightBorderPoint + offset);
             y = Random.Range(cameraTopBorderPoint, cameraTopBorderPoint + offset);
         }
         else if (choice == 2) // spawn right
         {
             x = Random.Range(cameraRightBorderPoint, cameraRightBorderPoint + offset);
-            y = Random.Range(cameraDownBorderPoint, cameraTopBorderPoint);
+            y = Random.Range(cameraDownBorderPoint - offset, cameraTopBorderPoint + offset);
         }
         else if (choice == 3) // spawn down
         {
-            x = Random.Range(cameraLeftBorderPoint, cameraRightBorderPoint);
+            x = Random.Range(cameraLeftBorderPoint - offset, cameraRightBorderPoint + offset);
             y = Random.Range(cameraDownBorderPoint - offset, cameraDownBorderPoint);
         }
 

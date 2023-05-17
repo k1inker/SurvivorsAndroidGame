@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class UIDamageIndicator : MonoBehaviour
+public class DamageIndicatorUI : MonoBehaviour
 {
     [SerializeField] private GameObject textDamageIndicator;
     public void SpawnIndicator(Vector2 pointSpawn, int countDamage)

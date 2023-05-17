@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1682020701594704053}
   - component: {fileID: 1682020701594704055}
   - component: {fileID: 1682020701594704054}
+  - component: {fileID: 2912653338820875713}
   m_Layer: 0
   m_Name: ExperianceParticle
   m_TagString: Untagged
@@ -126,3 +127,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 60
+--- !u!114 &2912653338820875713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682020701594704058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7410a265364a8224a8737bca68117964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

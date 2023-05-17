@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : ScriptableObject
@@ -15,6 +16,9 @@ public abstract class Weapon : ScriptableObject
 
     [Header("Prefab")]
     [SerializeField] protected GameObject bulletPrefab;
+
+    [Header("Upgrades")]
+    public List<UpgradeData> upgradesData;
     public abstract void SpawnWeapon(PlayerManager player);
     protected virtual void ProjectileSettings(GameObject weapon)
     {

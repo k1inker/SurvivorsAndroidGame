@@ -3,9 +3,9 @@ using Zenject;
 
 public class DamageIndicatorInstaller : MonoInstaller
 {
-    [SerializeField] private UIDamageIndicator _uiUnit;
+    [SerializeField] private DamageIndicatorUI _uiUnit;
     public override void InstallBindings()
     {
-        Container.Bind<UIDamageIndicator>().FromInstance(_uiUnit).AsSingle().NonLazy();
+        Container.Bind<DamageIndicatorUI>().FromInstance(_uiUnit).AsSingle().NonLazy();
     }
 }

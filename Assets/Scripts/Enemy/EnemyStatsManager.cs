@@ -6,7 +6,7 @@ public class EnemyStatsManager : CharacterStatsManager
 {
     public Action<Vector2, int> OnTakeDamageEnemy;
     
-    [Inject] private UIDamageIndicator _indicator;
+    [Inject] private DamageIndicatorUI _indicator;
 
     public Action OnEnemyDeath;
     protected override void Start()
