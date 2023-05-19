@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Weapon/FromAboveWeapon")]
-public class WeaponFromAbove : Weapon, IWeapon
+public class WeaponFromAbove : Weapon, IWeaponPath
 {
     [Header("SettingsFromAboveWeapon")]
     [SerializeField] private float _radiusPotentialDrop;
@@ -17,7 +17,7 @@ public class WeaponFromAbove : Weapon, IWeapon
             return;
         }
 
-        _rb.MovePosition(_rb.transform.position + Vector3.down * speedWeapon);
+        _rb.MovePosition(_rb.transform.position + Vector3.down * weaponStats.speedWeapon);
 
         if(_rb.transform.position.y <= _destinationPoint.y)
         {
@@ -40,6 +40,6 @@ public class WeaponFromAbove : Weapon, IWeapon
         //settings explosive projectile
         _rb = projectile.GetComponent<Rigidbody2D>();
         _projectile = projectile.GetComponent<Projectile>();
-        _projectile.SettingsProjectile(damageWeapon, isThrough, isPushBack, pushBackForce, timeAlive);
+        _projectile.SettingsProjectile(weaponStats);
     }
 }

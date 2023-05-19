@@ -6,13 +6,13 @@ public abstract class Projectile : MonoBehaviour
     protected bool isThrough;
     protected bool isPushBack;
     protected float pushBackForce;
-    public void SettingsProjectile(int damage,bool isThrough, bool isPushBack, float pushBackForce, float timeAlive)
+    public void SettingsProjectile(WeaponStats weaponStats)
     {
-        this.damage = damage;
-        this.isThrough = isThrough;
-        this.isPushBack = isPushBack;
-        this.pushBackForce = pushBackForce;
-        DestoyTimer(timeAlive);
+        damage = weaponStats.damageWeapon;
+        isThrough = weaponStats.isThrough;
+        isPushBack = weaponStats.isPushBack;
+        pushBackForce = weaponStats.pushBackForce;
+        DestoyTimer(weaponStats.timeAlive);
     }
     public abstract void ActionAtTheDestinationPoint();
     private void DestoyTimer(float time)

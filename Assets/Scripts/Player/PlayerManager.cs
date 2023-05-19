@@ -27,6 +27,6 @@ public class PlayerManager : CharacterManager
     private void FixedUpdate()
     {
         playerLocomotion.HandelMovment(inputHandler.moveInput.normalized);
-        playerWeaponManager.PathBulletConroler();
+        playerWeaponManager.PathBulletControler();
     }
 }

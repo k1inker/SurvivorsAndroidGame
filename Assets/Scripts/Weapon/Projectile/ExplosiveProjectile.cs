@@ -9,14 +9,14 @@ public class ExplosiveProjectile : Projectile
     {
         if(isThrough)
         {
-            GetComponent<CircleCollider2D>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
-    public void SettingsProjectile(int damage, bool isThrough, bool isPushBack, float pushBackForce,float timeAlive, float radiusExplosion)
-    {
-        base.SettingsProjectile(damage, isThrough, isPushBack, pushBackForce, timeAlive);
-        _radiusExplosion = radiusExplosion;
-    }
+    //public void SettingsProjectile(WeaponStats weaponStats, float radiusExplosion)
+    //{
+    //    base.SettingsProjectile(weaponStats);
+    //    _radiusExplosion = radiusExplosion;
+    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == ConstantName.Tags.Enemy)

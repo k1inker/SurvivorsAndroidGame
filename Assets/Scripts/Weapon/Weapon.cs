@@ -1,18 +1,39 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : ScriptableObject
+[Serializable]
+public class WeaponStats
 {
-    public float reloadDelay;
     [Header("Flags")]
-    [SerializeField] protected bool isThrough;
-    [SerializeField] protected bool isPushBack;
+    public bool isThrough;
+    public bool isPushBack;
 
     [Header("Value")]
-    [SerializeField] protected int damageWeapon;
-    [SerializeField] protected float speedWeapon;
-    [SerializeField] protected float timeAlive;
-    [SerializeField] protected float pushBackForce;
+    public float reloadDelay;
+    public int countWeapons = 1;
+    public int damageWeapon;
+    public float speedWeapon;
+    public float timeAlive;
+    public float pushBackForce;
+
+    public void UpgradeStats(WeaponStats aditionalStats)
+    {
+        this.isThrough = aditionalStats.isThrough;
+        this.isPushBack = aditionalStats.isPushBack;
+
+        this.reloadDelay += aditionalStats.reloadDelay;
+        this.countWeapons += aditionalStats.countWeapons;
+        this.damageWeapon += aditionalStats.damageWeapon;
+        this.speedWeapon += aditionalStats.speedWeapon;
+        this.timeAlive += aditionalStats.timeAlive;
+        this.pushBackForce += aditionalStats.pushBackForce;
+    }
+}
+public abstract class Weapon : ScriptableObject
+{
+    [Header("Stats")]
+    public WeaponStats weaponStats;
 
     [Header("Prefab")]
     [SerializeField] protected GameObject bulletPrefab;
@@ -24,10 +45,18 @@ public abstract class Weapon : ScriptableObject
     {
         Projectile projectile = weapon.GetComponent<Projectile>();
 
-        projectile.SettingsProjectile(damageWeapon, isThrough, isPushBack, pushBackForce, timeAlive);
+        projectile.SettingsProjectile(weaponStats);
+    }
+    public virtual void AddStatsWeapon(WeaponStats addStats)
+    {
+        weaponStats.damageWeapon += addStats.damageWeapon;
+        weaponStats.countWeapons += addStats.countWeapons;
+        weaponStats.speedWeapon += addStats.speedWeapon;
+        weaponStats.timeAlive += addStats.timeAlive;
+        weaponStats.pushBackForce += addStats.pushBackForce;
     }
 }
-public interface IWeapon
+public interface IWeaponPath
 {
     public void PathBullet();
 }

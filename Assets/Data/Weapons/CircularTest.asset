@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660eb1b63e7bd8f429ccb0c1fa4cae1c, type: 3}
   m_Name: CircularTest
   m_EditorClassIdentifier: 
-  reloadDelay: 10
-  isThrough: 1
-  isPushBack: 1
-  damageWeapon: 2
-  speedWeapon: 200
-  timeAlive: 8
-  pushBackForce: 2
+  weaponStats:
+    isThrough: 1
+    isPushBack: 1
+    reloadDelay: 10
+    countWeapons: 1
+    damageWeapon: 2
+    speedWeapon: 90
+    timeAlive: 8
+    pushBackForce: 2
   bulletPrefab: {fileID: 4915317703386542373, guid: f43dd0e133e13c54da55e006f68e1a44,
     type: 3}
+  upgradesData: []
   _offsetRadius: 2

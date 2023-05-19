@@ -10,17 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69ccb09ca9c0004781996c2317d6524, type: 3}
-  m_Name: EnemyDirection
+  m_Name: Pistol
   m_EditorClassIdentifier: 
-  reloadDelay: 1
-  isThrough: 0
-  isPushBack: 0
-  damageWeapon: 3
-  speedWeapon: 5
-  timeAlive: 5
-  pushBackForce: 1
+  weaponStats:
+    isThrough: 0
+    isPushBack: 0
+    reloadDelay: 2
+    countWeapons: 1
+    damageWeapon: 2
+    speedWeapon: 5
+    timeAlive: 6
+    pushBackForce: 0
   bulletPrefab: {fileID: 4915317703386542373, guid: e00536cd3b1165d4385ed7b75956c10b,
     type: 3}
+  upgradesData:
+  - {fileID: 11400000, guid: dba0121181d24f94ead9e0abc8818ff1, type: 2}
+  - {fileID: 11400000, guid: b6e833a01902d7042b89b5b1d9d6735c, type: 2}
+  - {fileID: 11400000, guid: b1a6f753dc2e54c419c049d1fdfab435, type: 2}
+  - {fileID: 11400000, guid: 8d749a02a471b0a4c8e912fdf7e88229, type: 2}
   _radiusDetection: 10
   _enemylayerMask:
     serializedVersion: 2

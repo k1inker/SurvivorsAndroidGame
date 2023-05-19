@@ -162,8 +162,7 @@ MonoBehaviour:
   level: 0
   _maxValuePerLevel: 100
   _multiplayLevel: 2
-  upgrades:
-  - {fileID: 11400000, guid: f11dbeaeb9f17504da417df8b6654335, type: 2}
+  upgrades: []
 --- !u!50 &248
 Rigidbody2D:
   serializedVersion: 4

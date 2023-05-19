@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f07e9114787b55644a61733d377eca50, type: 3}
-  m_Name: ExplosiveFrom Above
+  m_Name: Bomb
   m_EditorClassIdentifier: 
-  reloadDelay: 3
-  isThrough: 1
-  isPushBack: 1
-  damageWeapon: 5
-  speedWeapon: 0.3
-  timeAlive: 5
-  pushBackForce: 5
+  weaponStats:
+    isThrough: 1
+    isPushBack: 1
+    reloadDelay: 1
+    countWeapons: 1
+    damageWeapon: 5
+    speedWeapon: 0.22
+    timeAlive: 5
+    pushBackForce: 10
   bulletPrefab: {fileID: 4915317703386542373, guid: d5e40272291e4d3419d7c6ce861b171a,
     type: 3}
+  upgradesData: []
   _radiusPotentialDrop: 2
   _radiusExplosion: 2

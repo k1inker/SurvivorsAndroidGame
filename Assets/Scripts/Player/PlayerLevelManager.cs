@@ -74,6 +74,10 @@ public class PlayerLevelManager : MonoBehaviour
         }
         return upgradeArray;
     }
+    public void SetStartUpgrades(Weapon startWeapon)
+    {
+        upgrades.AddRange(startWeapon.upgradesData);
+    }
     public void Upgrade(int selectedUpgradeId)
     {
         UpgradeData upgradeData = selectedUpgrades[selectedUpgradeId];
@@ -82,6 +86,18 @@ public class PlayerLevelManager : MonoBehaviour
         {
             _player.playerWeaponManager.AddWeapon(selectedUpgrades[selectedUpgradeId].weaponData);
             upgrades.AddRange(selectedUpgrades[selectedUpgradeId].weaponData.upgradesData);
+        }
+        else if(upgradeData.upgradeType == UpgradeType.WeaponUpgrade)
+        {
+            _player.playerWeaponManager.UpgradeWeapon(selectedUpgrades[selectedUpgradeId]);
+        }
+        else if(upgradeData.upgradeType == UpgradeType.ItamUnlock)
+        {
+
+        }
+        else if(upgradeData.upgradeType == UpgradeType.ItemUpgrade)
+        {
+
         }
 
         acquiredUpgrades.Add(upgradeData);

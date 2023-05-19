@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,10 @@ public class PlayerWeaponManager : MonoBehaviour
     }
     private void Start()
     {
+        foreach(Weapon w in weapons)
+        {
+            _player.playerLevelManager.SetStartUpgrades(w);
+        }
         StartAttackAllWeapons();
     }
     private void Update()
@@ -26,13 +31,13 @@ public class PlayerWeaponManager : MonoBehaviour
         StopAllCoroutines();
         StartAttackAllWeapons();
     }
-    public void PathBulletConroler()
+    public void PathBulletControler()
     {
         foreach (Weapon weapon in weapons)
         {
-            if (weapon is IWeapon)
+            if (weapon is IWeaponPath)
             {
-                IWeapon iWeapon = (IWeapon)weapon;
+                IWeaponPath iWeapon = (IWeaponPath)weapon;
                 iWeapon.PathBullet();
             }
         }
@@ -48,8 +53,17 @@ public class PlayerWeaponManager : MonoBehaviour
     {
         while (true)
         {
-            currentWeapon.SpawnWeapon(_player);
-            yield return new WaitForSeconds(currentWeapon.reloadDelay);
+            yield return new WaitForSeconds(currentWeapon.weaponStats.reloadDelay);
+            for (int i = 0; i < currentWeapon.weaponStats.countWeapons; i++)
+            {
+                currentWeapon.SpawnWeapon(_player);
+                yield return new WaitForSeconds(.3f);
+            }
         }
+    }
+    public void UpgradeWeapon(UpgradeData upgradeData)
+    {
+        Weapon weaponToUpgrade = weapons.Find(weapon => weapon == upgradeData.weaponData);
+        weaponToUpgrade.weaponStats.UpgradeStats(upgradeData.upgradeStats);
     }
 }
