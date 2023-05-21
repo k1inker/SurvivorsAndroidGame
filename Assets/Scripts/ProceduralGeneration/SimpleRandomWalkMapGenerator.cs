@@ -8,14 +8,41 @@ public class SimpleRandomWalkMapGenerator : AbstractGenerator
     [SerializeField] private SimpleRandomWalkSO randomWalkParametrs;
     protected override void RunProceduralGeneration()
     {
-        HashSet<Vector2Int> floorPositions = RunRandomWalk();
+        tilemapVisualizer.PaintFillGround(sizeMap);
+        for(int i = -sizeMap.x; i < sizeMap.x; i+=sizeChunk)
+        {
+            for(int j = -sizeMap.y; j < sizeMap.y;j+=sizeChunk)
+            {
+                int minX = i;
+                int maxX = i + sizeChunk;
+                int minY = j;
+                int maxY = j + sizeChunk;
+                GenerationOneChunk(minX, maxX,minY,maxY);
+            }
+        }
+    }
+
+    private void GenerationOneChunk(int minX,int maxX,int minY,int maxY)
+    {
+        for (int i = 0; i < countIslandsPerChunk; i++)
+        {
+            int x = Random.Range(minX, maxX);
+            int y = Random.Range(minY, maxY);
+            GenerationOneSandIsland(new Vector2Int(x, y));
+        }
+    }
+
+    private void GenerationOneSandIsland(Vector2Int startPosition)
+    {
+        HashSet<Vector2Int> floorPositions = RunRandomWalk(startPosition);
+
         tilemapVisualizer.PaintGroundTiles(floorPositions);
 
         tilemapVisualizer.PaintGroundTiles(FindTransitionInDirection(floorPositions, Direction2D.cardinalDirectionList));
         tilemapVisualizer.PaintGroundTiles(FindTransitionInDirection(floorPositions, Direction2D.diagonalDirectionList));
     }
 
-    private HashSet<Vector2Int> RunRandomWalk()
+    private HashSet<Vector2Int> RunRandomWalk(Vector2Int startPosition)
     {
         Vector2Int currentPosition = startPosition;
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
