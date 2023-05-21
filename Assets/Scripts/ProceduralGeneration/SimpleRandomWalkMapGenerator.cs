@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,7 +10,9 @@ public class SimpleRandomWalkMapGenerator : AbstractGenerator
     {
         HashSet<Vector2Int> floorPositions = RunRandomWalk();
         tilemapVisualizer.PaintGroundTiles(floorPositions);
-        GeneratorSandTransition.CreateTranstions(floorPositions, tilemapVisualizer);
+
+        tilemapVisualizer.PaintGroundTiles(FindTransitionInDirection(floorPositions, Direction2D.cardinalDirectionList));
+        tilemapVisualizer.PaintGroundTiles(FindTransitionInDirection(floorPositions, Direction2D.diagonalDirectionList));
     }
 
     private HashSet<Vector2Int> RunRandomWalk()
@@ -28,5 +29,19 @@ public class SimpleRandomWalkMapGenerator : AbstractGenerator
             }
         }
         return floorPositions;
+    }
+    private static HashSet<Vector2Int> FindTransitionInDirection(HashSet<Vector2Int> floorPositions, List<Vector2Int> directionList)
+    {
+        HashSet<Vector2Int> tilePositions = new HashSet<Vector2Int>();
+        foreach (Vector2Int position in floorPositions)
+        {
+            foreach (Vector2Int direction in directionList)
+            {
+                Vector2Int neighbourPosition = position + direction;
+                if (!floorPositions.Contains(neighbourPosition))
+                    tilePositions.Add(neighbourPosition);
+            }
+        }
+        return tilePositions;
     }
 }
