@@ -1,13 +1,13 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(AbstractGenerator),true)]
+[CustomEditor(typeof(WorldGenerator),true)]
 public class RandomGeneratorEditor : Editor
 {
-    private AbstractGenerator _generator;
+    private WorldGenerator _generator;
     private void Awake()
     {
-        _generator = (AbstractGenerator)target;
+        _generator = (WorldGenerator)target;
     }
     public override void OnInspectorGUI()
     {
