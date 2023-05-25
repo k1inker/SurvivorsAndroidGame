@@ -14,6 +14,10 @@ public class WorldGenerator : MonoBehaviour
     [Header("Resource Generation")]
     [SerializeField] private SimpleRandomWalkSO randomWalkParametrs;
     [SerializeField] private GameObject[] propsObject;
+    private void Awake()
+    {
+        GenerateMap();
+    }
     public void GenerateMap()
     {
         tilemapVisualizer.Clear();

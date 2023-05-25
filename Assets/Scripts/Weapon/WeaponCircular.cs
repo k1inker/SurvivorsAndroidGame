@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Weapon/CircularWeapon")]
-public class WeaponCircular : Weapon, IWeaponPath
+public class WeaponCircular : WeaponBase, IWeaponPath
 {
     [Header("Circular Settings")]
     [SerializeField] private float _offsetRadius;
@@ -23,19 +22,14 @@ public class WeaponCircular : Weapon, IWeaponPath
         Vector3 offset = Quaternion.Euler(0f, 0f, weaponStats.speedWeapon * timeSinceSpawn) * new Vector3(0f, _offsetRadius, 0f);
         _rb.MovePosition(playerPosition + offset);
     }
-
-    public override void SpawnWeapon(PlayerManager player)
+    public override void Attack()
     {
         Vector3 spawnPoint = player.transform.position + new Vector3(0f, _offsetRadius, 0f);
         _player = player;
-        GameObject projectile = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity);
+        GameObject projectile = Instantiate(weaponData.bulletPrefab, spawnPoint, Quaternion.identity);
         _rb = projectile.GetComponent<Rigidbody2D>();
         _startTime = Time.time;
         ProjectileSettings(projectile);
     }
 
-    protected override void ProjectileSettings(GameObject weapon)
-    {
-        base.ProjectileSettings(weapon);
-    }
 }

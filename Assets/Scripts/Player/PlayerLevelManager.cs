@@ -74,7 +74,7 @@ public class PlayerLevelManager : MonoBehaviour
         }
         return upgradeArray;
     }
-    public void SetStartUpgrades(Weapon startWeapon)
+    public void UpdateListUpgrades(WeaponData startWeapon)
     {
         upgrades.AddRange(startWeapon.upgradesData);
     }

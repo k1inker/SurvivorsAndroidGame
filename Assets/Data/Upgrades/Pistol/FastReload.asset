@@ -15,12 +15,12 @@ MonoBehaviour:
   enhancementContext: FastReload
   upgradeType: 1
   icon: {fileID: 21300000, guid: 5be1a1e769fc4994bbf6ce06882620f8, type: 3}
-  weaponData: {fileID: 11400000, guid: 3cfaccff5bb337946b2c21ebde0e72e4, type: 2}
+  weaponData: {fileID: 11400000, guid: 95feda1d98d5580458b8e2be9875d2d9, type: 2}
   upgradeStats:
     isThrough: 0
     isPushBack: 0
-    reloadDelay: -1
-    countWeapons: 0
+    reloadDelay: 1
+    countAttack: 0
     damageWeapon: 0
     speedWeapon: 0
     timeAlive: 0

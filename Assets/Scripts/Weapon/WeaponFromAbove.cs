@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Weapon/FromAboveWeapon")]
-public class WeaponFromAbove : Weapon, IWeaponPath
+public class WeaponFromAbove : WeaponBase, IWeaponPath
 {
     [Header("SettingsFromAboveWeapon")]
     [SerializeField] private float _radiusPotentialDrop;
@@ -25,7 +24,7 @@ public class WeaponFromAbove : Weapon, IWeaponPath
         }
     }
 
-    public override void SpawnWeapon(PlayerManager player)
+    public override void Attack()
     {
         // get top screen point 
         float screenTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)).y;
@@ -35,7 +34,7 @@ public class WeaponFromAbove : Weapon, IWeaponPath
         _destinationPoint = player.transform.position + new Vector3(randomOffset.x, randomOffset.y, 0f);
        
         Vector2 spawnPosition = new Vector2(_destinationPoint.x, screenTop);
-        GameObject projectile = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+        GameObject projectile = Instantiate(weaponData.bulletPrefab, spawnPosition, Quaternion.identity);
 
         //settings explosive projectile
         _rb = projectile.GetComponent<Rigidbody2D>();

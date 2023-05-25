@@ -9,23 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb0c150d9c7d144399a3b7f871b920b, type: 3}
-  m_Name: ShotGun
+  m_Script: {fileID: 11500000, guid: 5a7e0d5899a23a74983db2f8d3ae60c0, type: 3}
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
   weaponStats:
     isThrough: 0
     isPushBack: 1
-    reloadDelay: 3
-    countWeapons: 1
-    damageWeapon: 1
+    reloadDelay: 4
+    countAttack: 1
+    damageWeapon: 2
     speedWeapon: 7
-    timeAlive: 7
-    pushBackForce: 2
+    timeAlive: 6
+    pushBackForce: 4
   bulletPrefab: {fileID: 4915317703386542373, guid: f6588e500c7dffb458d1411b22b0e464,
     type: 3}
-  upgradesData:
-  - {fileID: 11400000, guid: b6e833a01902d7042b89b5b1d9d6735c, type: 2}
-  - {fileID: 11400000, guid: dba0121181d24f94ead9e0abc8818ff1, type: 2}
-  - {fileID: 11400000, guid: b1a6f753dc2e54c419c049d1fdfab435, type: 2}
-  countBullet: 5
-  spreadAngle: 10
+  weaponBasePrefab: {fileID: 830654998891184104, guid: 41105dec5b7610b4c8a4b80394b18720,
+    type: 3}
+  upgradesData: []

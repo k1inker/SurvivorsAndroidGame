@@ -14,7 +14,7 @@ public class UpgradeData : ScriptableObject
     public UpgradeType upgradeType;
     public Sprite icon;
 
-    public Weapon weaponData;
+    public WeaponData weaponData;
 
     [Header("Upgrade Simple Stats")]
     public WeaponStats upgradeStats;
