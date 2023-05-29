@@ -8,6 +8,7 @@ public class ManagerUI : MonoBehaviour
     [Inject] private PlayerManager _playerManager;
 
     [SerializeField] private Slider _experienceBar;
+    [SerializeField] private Slider _healthBar;
 
     [Header("Upgrade Panel")]
     [SerializeField] private GameObject _upgradePanel;
@@ -16,11 +17,23 @@ public class ManagerUI : MonoBehaviour
 
     private string[] contextUpgrades;
     private int selectedUpgradeButton = 0;
-    private void Start()
+    private void Awake()
     {
+        _playerManager.playerStatsManager.OnMaxHealthChange += SetMaxHealthValue;
+        _playerManager.playerStatsManager.OnHealthChange += SetHealthValue;
+
         _playerManager.playerLevelManager.OnLevelUp += SetMaxExperienceValue;
         _playerManager.playerLevelManager.OnExperienceChange += SetExperienceValue;
+
         _playerManager.playerLevelManager.OnChooseUpgrade += ShowUpgradePanel;
+    }
+    public void SetMaxHealthValue(int maxHealth)
+    {
+        _healthBar.maxValue = maxHealth;
+    }
+    public void SetHealthValue(int currentHealth)
+    {
+        _healthBar.value = currentHealth;
     }
     public void SetExperienceValue(int currentExp)
     {

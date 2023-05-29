@@ -140,3 +140,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _radiusExplosion: 2
+  _effectExplosion: {fileID: 3951604338459539018, guid: 9db50c1e8e5fbba438a6db7ccced4f47,
+    type: 3}

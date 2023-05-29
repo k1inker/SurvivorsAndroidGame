@@ -7,13 +7,16 @@ public class WorldGenerator : MonoBehaviour
 {
     [SerializeField] protected Vector2Int startPosition = Vector2Int.zero;
     [SerializeField] protected TilemapVisualizer tilemapVisualizer = null;
+
     [Header("Setup Generation Map")]
     [SerializeField] protected Vector3Int sizeMap;
     [SerializeField] protected int countIslandsPerChunk;
     [SerializeField] protected int sizeChunk;
+
     [Header("Resource Generation")]
     [SerializeField] private SimpleRandomWalkSO randomWalkParametrs;
     [SerializeField] private GameObject[] propsObject;
+    [SerializeField] private Transform containerProps;
     private void Awake()
     {
         GenerateMap();
@@ -55,7 +58,7 @@ public class WorldGenerator : MonoBehaviour
     private void GenerationRandomProp(Vector2 spawnPoint)
     {
         int randomID = Random.Range(0, propsObject.Length - 1);
-        Instantiate(propsObject[randomID], spawnPoint, Quaternion.identity);
+        Instantiate(propsObject[randomID], spawnPoint, Quaternion.identity, containerProps);
     }
     private void GenerationOneSandIsland(Vector2Int startPosition)
     {

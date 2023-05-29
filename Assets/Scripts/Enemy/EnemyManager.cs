@@ -42,7 +42,7 @@ public class EnemyManager : CharacterManager
     {
         if (collision.tag == ConstantName.Tags.Player)
         {
-            if (dealingDamageCoroutine == null)
+            if (dealingDamageCoroutine == null && _currentTarget != null)
             {
                 dealingDamageCoroutine = StartCoroutine(DealingDamage());
             }
@@ -71,8 +71,6 @@ public class EnemyManager : CharacterManager
     {
         _currentTarget = null;
         _targetVector = Vector2.zero;
-        //off damage Collider
-        GetComponent<BoxCollider2D>().enabled = false;
     }
     public void SpawnExpParticle()
     {

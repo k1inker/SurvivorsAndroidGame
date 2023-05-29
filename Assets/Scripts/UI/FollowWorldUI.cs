@@ -7,7 +7,7 @@ public class FollowWorldUI : MonoBehaviour
     [Inject] private PlayerManager _player;
 
     [SerializeField] private Vector2 offset;
-    private void LateUpdate()
+    private void Update()
     {
         Vector2 possition = _camera.WorldToScreenPoint((Vector2)_player.transform.position + offset);
 

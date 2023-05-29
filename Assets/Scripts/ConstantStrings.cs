@@ -13,5 +13,6 @@ namespace ConstantName
     {
         public static string Player = "Player";
         public static string Enemy = "Enemy";
+        public static string PickedItem = "PickedItem";
     }
 }

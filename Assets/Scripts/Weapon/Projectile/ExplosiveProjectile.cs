@@ -5,6 +5,8 @@ public class ExplosiveProjectile : Projectile
     [SerializeField] private LayerMask _enemylayerMask;
 
     [SerializeField] private float _radiusExplosion;
+
+    [SerializeField] private GameObject _effectExplosion;
     private void Awake()
     {
         if(isThrough)
@@ -36,6 +38,7 @@ public class ExplosiveProjectile : Projectile
             }
             character.characterStatsManager.TakeDamage(damage);
         }
+        Instantiate(_effectExplosion, transform.position, Quaternion.identity);
         DestoyProjectile();
     }
 }

@@ -55,7 +55,10 @@ public class PlayerLevelManager : MonoBehaviour
 
         // activating event
         OnLevelUp?.Invoke(_maxValuePerLevel);
-        OnChooseUpgrade?.Invoke(selectedUpgrades.ToArray());
+        if (selectedUpgrades.Count != 0)
+        {
+            OnChooseUpgrade?.Invoke(selectedUpgrades.ToArray());
+        }
 
         IncreaseExperienceValue(expToNextLevel);
     }

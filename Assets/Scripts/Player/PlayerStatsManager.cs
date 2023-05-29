@@ -16,4 +16,10 @@ public class PlayerStatsManager : CharacterStatsManager
 
         OnHealthChange?.Invoke(currentHealth);
     }
+    public override void HealHealth(int countHeal)
+    {
+        base.HealHealth(countHeal);
+
+        OnHealthChange?.Invoke(currentHealth);
+    }
 }

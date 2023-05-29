@@ -28,4 +28,15 @@ public class PlayerManager : CharacterManager
     {
         playerLocomotion.HandelMovment(inputHandler.moveInput.normalized);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IPickUp pickUp = collision.GetComponent<IPickUp>();
+
+        if (pickUp == null)
+        {
+            return;
+        }
+
+        pickUp.PickUpAction(this);
+    }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -9,12 +10,14 @@ public class DamageIndicatorUI : MonoBehaviour
     {
         GameObject indicator = Instantiate(textDamageIndicator, pointSpawn, Quaternion.identity);
         indicator.transform.SetParent(transform);
-        indicator.GetComponent<TextMeshProUGUI>().text = countDamage.ToString();
-        StartCoroutine(DestroyIndicator(indicator));
-    }
-    public IEnumerator DestroyIndicator(GameObject indicator)
-    {
-        yield return new WaitForSeconds(1f);
-        Destroy(indicator.gameObject);
+
+        var textPopUp = indicator.GetComponent<TextMeshProUGUI>();
+
+        textPopUp.text = countDamage.ToString();
+
+        DOTween.Sequence()
+            .Append(textPopUp.DOFade(1f, 0.5f))
+            .Append(textPopUp.DOFade(0f, 0.5f))
+            .AppendCallback(() => Destroy(indicator.gameObject));
     }
 }
