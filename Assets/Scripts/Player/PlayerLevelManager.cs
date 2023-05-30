@@ -23,7 +23,8 @@ public class PlayerLevelManager : MonoBehaviour
     private PlayerManager _player;
     private void Awake()
     {
-        _player = GetComponent<PlayerManager>(); 
+        _player = GetComponent<PlayerManager>();
+
     }
     private void Start()
     {
@@ -77,9 +78,9 @@ public class PlayerLevelManager : MonoBehaviour
         }
         return upgradeArray;
     }
-    public void UpdateListUpgrades(WeaponData startWeapon)
+    public void UpdateListUpgrades(UpgradeData[] data)
     {
-        upgrades.AddRange(startWeapon.upgradesData);
+        upgrades.AddRange(data);
     }
     public void Upgrade(int selectedUpgradeId)
     {
@@ -94,13 +95,14 @@ public class PlayerLevelManager : MonoBehaviour
         {
             _player.playerWeaponManager.UpgradeWeapon(selectedUpgrades[selectedUpgradeId]);
         }
-        else if(upgradeData.upgradeType == UpgradeType.ItamUnlock)
+        else if(upgradeData.upgradeType == UpgradeType.ItemUnlock)
         {
-
+            _player.passiveItem.Equip(upgradeData.item);
+            UpdateListUpgrades(upgradeData.item.upgrades);
         }
         else if(upgradeData.upgradeType == UpgradeType.ItemUpgrade)
         {
-
+            _player.passiveItem.UpgradeItem(upgradeData);
         }
 
         acquiredUpgrades.Add(upgradeData);

@@ -42,7 +42,7 @@ public class EnemyManager : CharacterManager
     {
         if (collision.tag == ConstantName.Tags.Player)
         {
-            if (dealingDamageCoroutine == null && _currentTarget != null)
+            if (dealingDamageCoroutine == null)
             {
                 dealingDamageCoroutine = StartCoroutine(DealingDamage());
             }
@@ -80,7 +80,8 @@ public class EnemyManager : CharacterManager
     {
         while (true)
         {
-            _currentTarget.playerStatsManager.TakeDamage(_damage);
+            if(_currentTarget != null)
+                _currentTarget.playerStatsManager.TakeDamage(_damage);
             yield return new WaitForSeconds(_rateDamage);
         }
     }

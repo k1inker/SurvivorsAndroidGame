@@ -9,6 +9,7 @@ public class PlayerManager : CharacterManager
     public PlayerStatsManager playerStatsManager { get; private set; }
     public PlayerLevelManager playerLevelManager { get; private set; }
     public PlayerWeaponManager playerWeaponManager { get; private set; }
+    public PassiveItem passiveItem { get; private set; }
     public ManagerUI uiManager { get; private set; }
     protected override void Awake()
     {
@@ -18,6 +19,7 @@ public class PlayerManager : CharacterManager
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerLevelManager = GetComponent<PlayerLevelManager>();
         playerWeaponManager = GetComponent<PlayerWeaponManager>();
+        passiveItem = GetComponent<PassiveItem>();
         uiManager = GetComponentInChildren<ManagerUI>();
     }
     private void Update()

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3405ca4bb2cbaa345b3e09d5230db514, type: 3}
-  m_Name: IncreaseDamage
+  m_Name: UnlockShotgun
   m_EditorClassIdentifier: 
-  enhancementContext: IncreaseDamage
-  upgradeType: 1
+  enhancementContext: Add Shotgun
+  upgradeType: 0
   icon: {fileID: 21300000, guid: 5be1a1e769fc4994bbf6ce06882620f8, type: 3}
-  weaponData: {fileID: 11400000, guid: 95feda1d98d5580458b8e2be9875d2d9, type: 2}
+  weaponData: {fileID: 11400000, guid: 1ca2c0e017a7a2c408ee570b6e97bfd5, type: 2}
   upgradeStats:
     isThrough: 0
     isPushBack: 0
     reloadDelay: 0
-    countWeapons: 0
-    damageWeapon: 3
+    countAttack: 0
+    damageWeapon: 0
     speedWeapon: 0
     timeAlive: 0
     pushBackForce: 0

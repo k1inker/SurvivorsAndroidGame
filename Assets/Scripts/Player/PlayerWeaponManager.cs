@@ -33,11 +33,11 @@ public class PlayerWeaponManager : MonoBehaviour
         weapons.Add(weaponBase);
         weaponBase.SetData(weaponData);
 
-        _player.playerLevelManager.UpdateListUpgrades(weaponData);
+        _player.playerLevelManager.UpdateListUpgrades(weaponData.upgradesData);
     }
     public void UpgradeWeapon(UpgradeData upgradeData)
     {
         WeaponBase weaponToUpgrade = weapons.Find(weapon => weapon.weaponData == upgradeData.weaponData);
-        weaponToUpgrade.AddStatsWeapon(upgradeData.upgradeStats);
+        weaponToUpgrade.AddStatsWeapon(upgradeData.weaponUpgradeStats);
     }
 }

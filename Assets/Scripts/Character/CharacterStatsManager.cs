@@ -6,6 +6,8 @@ public class CharacterStatsManager : MonoBehaviour
     [SerializeField] protected int currentHealth;
     [SerializeField] protected int maxHealth;
 
+    public int armor;
+
     public Action<string> OnTakeDamageCharacter;
     public Action<string> OnDeathCharacter;
     protected virtual void Start()
@@ -14,15 +16,23 @@ public class CharacterStatsManager : MonoBehaviour
     }
     public virtual void TakeDamage(int countDamage)
     {
-        if (currentHealth - countDamage > 0)
+        ApplyArmor(ref countDamage);
+
+        currentHealth -= countDamage;
+
+        if (currentHealth > 0)
         {
-            currentHealth -= countDamage;
             OnTakeDamageCharacter?.Invoke(ConstantName.Animation.Damage);
             return;
         }
 
         currentHealth = 0;
         HandlerDeath();
+    }
+    private void ApplyArmor(ref int damage)
+    {
+        damage -= armor;
+        if(damage < 0) { damage = 0;}
     }
     public virtual void HealHealth(int countHeal)
     {

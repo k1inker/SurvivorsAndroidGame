@@ -48,5 +48,5 @@ public class WeaponData : ScriptableObject
     [SerializeField] public GameObject weaponBasePrefab;
 
     [Header("Upgrades")]
-    public List<UpgradeData> upgradesData;
+    public UpgradeData[] upgradesData;
 }

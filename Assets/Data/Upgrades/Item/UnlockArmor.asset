@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3405ca4bb2cbaa345b3e09d5230db514, type: 3}
-  m_Name: FastReload
+  m_Name: UnlockArmor
   m_EditorClassIdentifier: 
-  enhancementContext: FastReload
-  upgradeType: 1
-  icon: {fileID: 21300000, guid: 5be1a1e769fc4994bbf6ce06882620f8, type: 3}
-  weaponData: {fileID: 11400000, guid: 95feda1d98d5580458b8e2be9875d2d9, type: 2}
+  enhancementContext: Unlock Armor
+  upgradeType: 2
+  icon: {fileID: 21300000, guid: f0b5df689d766d0418db15b50ce925b8, type: 3}
+  weaponData: {fileID: 0}
+  item: {fileID: 11400000, guid: 6665f4f739e33214b84b35ed52f9e6c3, type: 2}
   upgradeStats:
     isThrough: 0
     isPushBack: 0
-    reloadDelay: 1
+    reloadDelay: 0
     countAttack: 0
     damageWeapon: 0
     speedWeapon: 0

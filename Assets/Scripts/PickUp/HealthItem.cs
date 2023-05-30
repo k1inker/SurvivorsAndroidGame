@@ -4,7 +4,7 @@ using UnityEngine;
 public class HealthItem : MonoBehaviour, IPickUp
 {
     public int valueHeal;
-
+    private bool isPickedUp = false;
     public void AnimationPickUp(PlayerManager player)
     {
         DOTween.Sequence()
@@ -15,7 +15,11 @@ public class HealthItem : MonoBehaviour, IPickUp
 
     public void PickUpAction(PlayerManager player)
     {
-        player.playerStatsManager.HealHealth(valueHeal);
-        AnimationPickUp(player);
+        if (!isPickedUp)
+        {
+            isPickedUp = true;
+            player.playerStatsManager.HealHealth(valueHeal);
+            AnimationPickUp(player);
+        }
     }
 }
