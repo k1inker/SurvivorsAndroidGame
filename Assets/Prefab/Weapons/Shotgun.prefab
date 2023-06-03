@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 830654998891184106}
-  - component: {fileID: 830654998891184107}
+  - component: {fileID: 8464805481782105631}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &830654998891184107
+--- !u!114 &8464805481782105631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 830654998891184104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb0c150d9c7d144399a3b7f871b920b, type: 3}
+  m_Script: {fileID: 11500000, guid: b69ccb09ca9c0004781996c2317d6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spreadAngle: 30
+  _radiusDetection: 5
+  _enemylayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  spreadAngle: 20
   countProjectile: 8

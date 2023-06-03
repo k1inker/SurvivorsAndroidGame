@@ -6,7 +6,11 @@ using Zenject;
 public class ManagerUI : MonoBehaviour
 {
     [Inject] private PlayerManager _playerManager;
+    [Inject] private StageEventManager _stageManager;
 
+    [SerializeField] private TextMeshProUGUI _timer;
+
+    [Header("Slider bars")]
     [SerializeField] private Slider _experienceBar;
     [SerializeField] private Slider _healthBar;
 
@@ -26,6 +30,8 @@ public class ManagerUI : MonoBehaviour
         _playerManager.playerLevelManager.OnExperienceChange += SetExperienceValue;
 
         _playerManager.playerLevelManager.OnChooseUpgrade += ShowUpgradePanel;
+
+        _stageManager.OnTimeChange += SetTime;
     }
     public void SetMaxHealthValue(int maxHealth)
     {
@@ -71,5 +77,11 @@ public class ManagerUI : MonoBehaviour
         _playerManager.playerLevelManager.Upgrade(selectedUpgradeButton);
         _upgradePanel.SetActive(false);
         PauseManager.ResumeGame();
+    }
+    public void SetTime(float time)
+    {
+        int minutes = (int)(time / 60f);
+        int seconds = (int)(time % 60f);
+        _timer.text = minutes.ToString() + ":" + seconds.ToString("00");
     }
 }

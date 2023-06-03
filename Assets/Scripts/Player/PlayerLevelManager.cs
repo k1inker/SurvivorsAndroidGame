@@ -12,7 +12,7 @@ public class PlayerLevelManager : MonoBehaviour
     [SerializeField] private sbyte _multiplayLevel = 2;
     [SerializeField] private List<UpgradeData> upgrades;
 
-    private int _currentValueOnLevel = 0;
+    [SerializeField] private int _currentValueOnLevel = 0;
     private List<UpgradeData> selectedUpgrades = new List<UpgradeData>();
     private List<UpgradeData> acquiredUpgrades = new List<UpgradeData>();
 
@@ -44,7 +44,6 @@ public class PlayerLevelManager : MonoBehaviour
         {
             return;
         }
-
         selectedUpgrades.Clear();
         selectedUpgrades.AddRange(GetUpgrades(3));
 

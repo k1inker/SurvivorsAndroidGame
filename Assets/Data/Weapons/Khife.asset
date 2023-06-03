@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a7e0d5899a23a74983db2f8d3ae60c0, type: 3}
-  m_Name: Shotgun
+  m_Name: Khife
   m_EditorClassIdentifier: 
   weaponStats:
-    isThrough: 0
+    isThrough: 1
     isPushBack: 1
-    reloadDelay: 3
+    reloadDelay: 0.7
     countAttack: 1
-    damageWeapon: 3
-    speedWeapon: 5
+    damageWeapon: 4
+    speedWeapon: 4
     timeAlive: 6
-    pushBackForce: 4
-  bulletPrefab: {fileID: 4915317703386542373, guid: f6588e500c7dffb458d1411b22b0e464,
+    pushBackForce: 5
+  bulletPrefab: {fileID: 994823424353672070, guid: 489c428ed1806db4b92a4bea55917f7d,
     type: 3}
-  weaponBasePrefab: {fileID: 830654998891184104, guid: 41105dec5b7610b4c8a4b80394b18720,
+  weaponBasePrefab: {fileID: 6441737280133185102, guid: 1c84b94be311baa4f9a0c9206fe2838f,
     type: 3}
   upgradesData: []

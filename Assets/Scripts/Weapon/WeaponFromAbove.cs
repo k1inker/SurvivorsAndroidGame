@@ -38,7 +38,6 @@ public class WeaponFromAbove : WeaponBase, IWeaponPath
 
         //settings explosive projectile
         _rb = projectile.GetComponent<Rigidbody2D>();
-        _projectile = projectile.GetComponent<Projectile>();
-        _projectile.SettingsProjectile(weaponStats);
+        ProjectileSettings(projectile);
     }
 }

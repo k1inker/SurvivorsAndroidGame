@@ -16,6 +16,9 @@ public class EnemyStatsManager : CharacterStatsManager
     }
     public override void TakeDamage(int countDamage)
     {
+        if (currentHealth <= 0)
+            return;
+
         OnTakeDamageEnemy?.Invoke(transform.position,countDamage);
         base.TakeDamage(countDamage);
     }

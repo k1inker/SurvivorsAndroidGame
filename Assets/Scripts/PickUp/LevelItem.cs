@@ -4,7 +4,7 @@ using UnityEngine;
 public class LevelItem : MonoBehaviour, IPickUp
 {
     [SerializeField] private ushort value;
-    private bool isPickedUp;
+    private bool isPickedUp = false;
     public void AnimationPickUp(PlayerManager player)
     {
         DOTween.Sequence()

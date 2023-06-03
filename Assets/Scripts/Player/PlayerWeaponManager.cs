@@ -21,7 +21,7 @@ public class PlayerWeaponManager : MonoBehaviour
     private void Update()
     {
         if (_player.inputHandler.moveInput != Vector2.zero)
-            lookDirection = _player.inputHandler.moveInput;
+            lookDirection = _player.inputHandler.moveInput.normalized;
     }
     public void AddWeapon(WeaponData weaponData)
     {

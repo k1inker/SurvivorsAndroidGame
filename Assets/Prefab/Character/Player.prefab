@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.65
+  m_Radius: 1
 --- !u!1 &785326322
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1556680169914527227}
   - component: {fileID: 1556680169914527230}
   - component: {fileID: 8748275932458542534}
+  - component: {fileID: 1556680169914526986}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -311,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  armor: 0
 --- !u!114 &1556680169914527227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +340,9 @@ MonoBehaviour:
   level: 0
   _maxValuePerLevel: 100
   _multiplayLevel: 2
-  upgrades: []
+  upgrades:
+  - {fileID: 11400000, guid: e3722a310238ddb45bffe1035e46b07e, type: 2}
+  _currentValueOnLevel: 0
 --- !u!114 &8748275932458542534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,8 +356,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentObjectWeapon: {fileID: 785326323}
-  startWeapon: {fileID: 11400000, guid: 95feda1d98d5580458b8e2be9875d2d9, type: 2}
+  startWeapon: {fileID: 11400000, guid: ba3eca29094529d44a950701492dab0d, type: 2}
   weapons: []
+--- !u!114 &1556680169914526986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556680168188516217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f9ce9d79326614bafea648060ff037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items: []
 --- !u!1 &6714149164835104629
 GameObject:
   m_ObjectHideFlags: 0

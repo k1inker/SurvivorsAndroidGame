@@ -53,7 +53,7 @@ public abstract class WeaponBase : MonoBehaviour
     {
         Projectile projectile = weapon.GetComponent<Projectile>();
 
-        projectile.SettingsProjectile(weaponStats);
+        projectile.SettingsProjectile(weaponStats, player.transform);
     }
     public void AddStatsWeapon(WeaponStats upgradeStats)
     {
