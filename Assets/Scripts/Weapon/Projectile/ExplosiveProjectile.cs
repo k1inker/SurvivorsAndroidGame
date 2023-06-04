@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class ExplosiveProjectile : Projectile
 {
     [SerializeField] private LayerMask _enemylayerMask;
@@ -21,24 +20,29 @@ public class ExplosiveProjectile : Projectile
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == ConstantName.Tags.Enemy)
-        {
-            ActionAtTheDestinationPoint();
-        }
+        if (collision.GetComponent<IDamageable>() == null)
+            return;
+
+        ActionAtTheDestinationPoint();
     }
 
     public override void ActionAtTheDestinationPoint()
     {
+        Instantiate(_effectExplosion, transform.position, Quaternion.identity);
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, _radiusExplosion, _enemylayerMask))
         {
-            CharacterManager character = collider.GetComponent<CharacterManager>();
             if (isPushBack)
             {
-                character.characterLocomotionManager.KnockBack(character.transform.position - transform.position, pushBackForce);
+                CharacterLocomotionManager character = collider.GetComponent<CharacterLocomotionManager>();
+                if(character != null)
+                    character.KnockBack(collider.transform.position - transform.position, pushBackForce);
             }
-            character.characterStatsManager.TakeDamage(damage);
+            IDamageable damageableObject = collider.GetComponent<IDamageable>();
+            if (damageableObject != null)
+            {
+                damageableObject.TakeDamage(damage);
+            }
         }
-        Instantiate(_effectExplosion, transform.position, Quaternion.identity);
         DestoyProjectile();
     }
 }

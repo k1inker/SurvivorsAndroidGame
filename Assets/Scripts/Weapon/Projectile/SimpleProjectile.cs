@@ -9,17 +9,25 @@ public class SimpleProjectile : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != ConstantName.Tags.Enemy)
-            return;
+        IDamageable damageableObject = collision.GetComponent<IDamageable>();
 
-        EnemyManager enemy = collision.GetComponent<EnemyManager>();
-        enemy.characterStatsManager.TakeDamage(damage);
+        if (collision.GetComponent<IDamageable>() == null)
+            return;
 
         if (isPushBack)
         {
-            Vector2 directionPush = collision.transform.position - transformPlayer.position;
-            enemy.enemyLocomotion.KnockBack(directionPush.normalized, pushBackForce);
+            CharacterLocomotionManager character = collision.GetComponent<CharacterLocomotionManager>();
+            if (character != null)
+            {
+                Vector2 directionPush = collision.transform.position - transformPlayer.position;
+                character.KnockBack(directionPush.normalized, pushBackForce);
+            }
         }
+        if(damageableObject != null)
+        {
+            damageableObject.TakeDamage(damage);
+        }    
+
         if (!isThrough)
         {
             ActionAtTheDestinationPoint();

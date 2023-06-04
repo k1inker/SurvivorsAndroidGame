@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -7,18 +8,15 @@ public class EnemyManager : CharacterManager
     public EnemyStatsManager enemyStats { get; private set; }
     public EnemyLocomotionManager enemyLocomotion { get; private set; }
 
-    [Header("Param damage")]
-    [SerializeField] private int _damage = 1;
-    [Range(0.5f, 5f)]
+    [Header("Damage parametrs")]
     [SerializeField] private float _rateDamage = 0.5f;
+    [SerializeField] private int _damage = 1;
 
     [Header("Information Target")]
     [Inject] private PlayerManager _currentTarget;
     [SerializeField] private Vector2 _targetVector;
 
-    [Header("Level")]
-    [SerializeField] private GameObject _prefabLevelParticle;
-    private Coroutine dealingDamageCoroutine;
+    private Coroutine _dealingDamageCoroutine;
     protected override void Awake()
     {
         base.Awake();
@@ -28,7 +26,6 @@ public class EnemyManager : CharacterManager
     private void Start()
     {
         enemyStats.OnEnemyDeath += StopEnemy;
-        enemyStats.OnEnemyDeath += SpawnExpParticle;
     }
     private void FixedUpdate()
     {
@@ -42,9 +39,9 @@ public class EnemyManager : CharacterManager
     {
         if (collision.tag == ConstantName.Tags.Player)
         {
-            if (dealingDamageCoroutine == null)
+            if (_dealingDamageCoroutine == null)
             {
-                dealingDamageCoroutine = StartCoroutine(DealingDamage());
+                _dealingDamageCoroutine = StartCoroutine(DealingDamage());
             }
         }
     }
@@ -52,10 +49,10 @@ public class EnemyManager : CharacterManager
     {
         if (collision.tag == "Player")
         {
-            if (dealingDamageCoroutine != null)
+            if (_dealingDamageCoroutine != null)
             {
-                StopCoroutine(dealingDamageCoroutine);
-                dealingDamageCoroutine = null;
+                StopCoroutine(_dealingDamageCoroutine);
+                _dealingDamageCoroutine = null;
             }
         }
     }
@@ -71,10 +68,6 @@ public class EnemyManager : CharacterManager
     {
         _currentTarget = null;
         _targetVector = Vector2.zero;
-    }
-    public void SpawnExpParticle()
-    {
-        Instantiate(_prefabLevelParticle, transform.position, Quaternion.identity);
     }
     private IEnumerator DealingDamage()
     {

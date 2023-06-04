@@ -1,28 +1,23 @@
 using System;
 using UnityEngine;
 using Zenject;
-
-public class EnemyStatsManager : CharacterStatsManager
+public class EnemyStatsManager : CharacterStatsManager, IDamageable
 {
-    public Action<Vector2, int> OnTakeDamageEnemy;
-    
     [Inject] private DamageIndicatorUI _indicator;
 
     public Action OnEnemyDeath;
-    protected override void Start()
+    public void ApplyProgress(float progress)
     {
-        base.Start();
-        OnTakeDamageEnemy += _indicator.SpawnIndicator;
+        maxHealth = maxHealth + (int)(maxHealth * progress);
     }
     public override void TakeDamage(int countDamage)
     {
         if (currentHealth <= 0)
             return;
 
-        OnTakeDamageEnemy?.Invoke(transform.position,countDamage);
+        _indicator.SpawnIndicator(transform.position,countDamage);
         base.TakeDamage(countDamage);
     }
-
     public override void HandlerDeath()
     {
         base.HandlerDeath();
