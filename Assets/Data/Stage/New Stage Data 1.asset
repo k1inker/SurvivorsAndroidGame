@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a086f535372aee94884becd12d659fc6, type: 3}
-  m_Name: New Stage Data
+  m_Name: New Stage Data 1
   m_EditorClassIdentifier: 
-  time: 0
-  enemyType: {fileID: 3074315710085662273, guid: e9493227b4dc4d4478e5013cb31319c8,
+  time: 10
+  enemyType: {fileID: 3074315710085662273, guid: 93ade4c836bffb74e9b019739ef557b5,
     type: 3}
   countEnemy: 10
   isRepeatedEvent: 1
-  reapeatEverySeconds: 10
+  reapeatEverySeconds: 5
   countRepeat: 2

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -13,7 +12,7 @@ public class EnemyManager : CharacterManager
     [SerializeField] private int _damage = 1;
 
     [Header("Information Target")]
-    [Inject] private PlayerManager _currentTarget;
+    [SerializeField] [Inject] private PlayerManager _currentTarget;
     [SerializeField] private Vector2 _targetVector;
 
     private Coroutine _dealingDamageCoroutine;
@@ -25,7 +24,7 @@ public class EnemyManager : CharacterManager
     }
     private void Start()
     {
-        enemyStats.OnEnemyDeath += StopEnemy;
+        enemyStats.OnEnemyDeath += DeathingHandler;
     }
     private void FixedUpdate()
     {
@@ -37,7 +36,7 @@ public class EnemyManager : CharacterManager
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == ConstantName.Tags.Player)
+        if (collision.gameObject == _currentTarget.gameObject)
         {
             if (_dealingDamageCoroutine == null)
             {
@@ -47,7 +46,7 @@ public class EnemyManager : CharacterManager
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.gameObject == _currentTarget.gameObject)
         {
             if (_dealingDamageCoroutine != null)
             {
@@ -64,9 +63,10 @@ public class EnemyManager : CharacterManager
             _targetVector.Normalize();
         }
     }
-    public void StopEnemy()
+    public void DeathingHandler()
     {
-        _currentTarget = null;
+        if(_dealingDamageCoroutine != null)
+            StopCoroutine(_dealingDamageCoroutine);
         _targetVector = Vector2.zero;
     }
     private IEnumerator DealingDamage()

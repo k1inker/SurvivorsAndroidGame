@@ -1,3 +1,4 @@
+using NTC.Global.Pool;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,56 +10,56 @@ public class StageEventManager : MonoBehaviour
     [Inject] private Camera _mainCamera;
     [Inject] private DiContainer _container;
 
-    [SerializeField] private float progressTimeRate = 30f;
-    [SerializeField] private float progressPerSplit = .2f;
     [SerializeField] private List<StageEvent> stageEvents;
-    private int _eventIndexer;
+
     private float _time;
     private float _offset = 3f;
+    private int _eventIndexer = 0;
     private int counterSpawnEnemy;
 
     public Action<float> OnTimeChange;
-    private float _progress
-    {
-        get
-        {
-            return _time / progressTimeRate * progressPerSplit;
-        }
-    }
     private void FixedUpdate()
     {
-        if (_eventIndexer >= stageEvents.Count)
-            return;
-
         _time += Time.fixedDeltaTime;
         OnTimeChange(_time);
+
+        if (_eventIndexer >= stageEvents.Count)
+            return;
 
         if(_time > stageEvents[_eventIndexer].time)
         {
             counterSpawnEnemy = stageEvents[_eventIndexer].countEnemy;
-
-            // logic for repeats event
-            if (stageEvents[_eventIndexer].isRepeatedEvent)
+            // logic repeated event
+            if(stageEvents[_eventIndexer].isRepeatedEvent && stageEvents[_eventIndexer].countRepeat > 0)
             {
-                if (stageEvents[_eventIndexer].countRepeat != 0)
+                float timeNextEvent = stageEvents[_eventIndexer].time + stageEvents[_eventIndexer].reapeatEverySeconds;
+                // check if repeat event last in List
+                if (_eventIndexer + 1 >= stageEvents.Count)
                 {
-                    stageEvents[_eventIndexer].time += stageEvents[_eventIndexer].reapeatEverySeconds;
-
-                    // adding new event aftef this index by sorting time
-                    int insertIndex = stageEvents.BinarySearch(_eventIndexer + 1, stageEvents.Count - (_eventIndexer + 1), stageEvents[_eventIndexer],
-                        Comparer<StageEvent>.Create((a, b) => a.time.CompareTo(b.time)));
-
-                    if (insertIndex < 0)
+                    stageEvents.Add(CreateNewStage(timeNextEvent));
+                }
+                else
+                {
+                    for (int i = _eventIndexer + 1; i < stageEvents.Count; i++)
                     {
-                        insertIndex = ~insertIndex;
+                        if (stageEvents[i].time >= timeNextEvent)
+                        {
+                            stageEvents.Insert(i, CreateNewStage(timeNextEvent));
+                            break;
+                        }
                     }
-
-                    stageEvents[_eventIndexer].countRepeat--;
-                    stageEvents.Insert(insertIndex, stageEvents[_eventIndexer]);
                 }
             }
             _eventIndexer += 1;
         }
+    }
+    private StageEvent CreateNewStage(float timeNextEvent)
+    {
+        int countRepeat = stageEvents[_eventIndexer].countRepeat - 1;
+        StageEvent newStage = new StageEvent(timeNextEvent, stageEvents[_eventIndexer].enemyType,
+            stageEvents[_eventIndexer].countEnemy, stageEvents[_eventIndexer].isRepeatedEvent,
+            stageEvents[_eventIndexer].reapeatEverySeconds, countRepeat);
+        return newStage;
     }
     private void Update()
     {
@@ -67,16 +68,12 @@ public class StageEventManager : MonoBehaviour
 
         SpawnRandomEnemysByStage();
     }
-
     private void SpawnRandomEnemysByStage()
     {
         Vector3 spawnPosition = GetRandomSidePosition(Random.Range(0, 4), _mainCamera);
-        GameObject enemy = _container.InstantiatePrefab(stageEvents[_eventIndexer].enemyType, spawnPosition, Quaternion.identity, null);
-        enemy.GetComponent<EnemyStatsManager>().ApplyProgress(_progress);
-
+        NightPool.Spawn(stageEvents[_eventIndexer - 1].enemyType, _container, spawnPosition, Quaternion.identity);
         counterSpawnEnemy--;
     }
-
     private Vector3 GetRandomSidePosition(int choice, Camera mainCamera)
     {
 

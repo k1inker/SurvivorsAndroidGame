@@ -23,7 +23,7 @@ public class SimpleProjectile : Projectile
                 character.KnockBack(directionPush.normalized, pushBackForce);
             }
         }
-        if(damageableObject != null)
+        if (damageableObject != null)
         {
             damageableObject.TakeDamage(damage);
         }    

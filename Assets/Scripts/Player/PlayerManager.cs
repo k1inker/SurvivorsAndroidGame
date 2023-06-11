@@ -38,7 +38,6 @@ public class PlayerManager : CharacterManager
         {
             return;
         }
-
         pickUp.PickUpAction(this);
     }
 }

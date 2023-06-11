@@ -1,8 +1,9 @@
+using NTC.Global.Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterLocomotionManager : MonoBehaviour
+public abstract class CharacterLocomotionManager : MonoBehaviour, IPoolItem
 {
     public float moveSpeed;
     public Rigidbody2D rb;
@@ -14,7 +15,7 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
     protected List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     protected CharacterManager _character;
 
-    private bool isStunned = false;
+    [SerializeField] private bool isStunned = false;
     protected virtual void Awake()
     {
         _capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
@@ -53,5 +54,13 @@ public abstract class CharacterLocomotionManager : MonoBehaviour
         isStunned = true;
         yield return new WaitForSeconds(time);
         isStunned = false;
+    }
+    public void OnSpawn()
+    {
+        isStunned = false;
+    }
+    public void OnDespawn()
+    {
+        
     }
 }

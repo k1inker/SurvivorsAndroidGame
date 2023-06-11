@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using NTC.Global.Pool;
 using UnityEngine;
 
-public class DropOnDestroy : MonoBehaviour
+public class DropOnDestroy : MonoBehaviour, IPoolItem
 {
     [SerializeField] private GameObject[] _dropItems;
     [SerializeField][Range(0f, 1f)] private float _chance = 1f;
@@ -12,10 +11,6 @@ public class DropOnDestroy : MonoBehaviour
     {
         _isQuitting = true;
     }
-    private void OnDestroy()
-    {
-        CheckDrop();
-    }
     private void CheckDrop()
     {
         if (_isQuitting)
@@ -24,7 +19,13 @@ public class DropOnDestroy : MonoBehaviour
         if(Random.value < _chance)
         {
             GameObject toDrop = _dropItems[Random.Range(0, _dropItems.Length - 1)];
-            Instantiate(toDrop, transform.position, Quaternion.identity);
+            NightPool.Spawn(toDrop, null, transform.position, Quaternion.identity);
         }
+    }
+
+    public void OnSpawn() { }
+    public void OnDespawn()
+    {
+        CheckDrop();
     }
 }

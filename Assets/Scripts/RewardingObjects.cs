@@ -1,3 +1,4 @@
+using NTC.Global.Pool;
 using UnityEngine;
 using Zenject;
 
@@ -15,7 +16,7 @@ public class RewardingObjects : MonoBehaviour, IDamageable
     {
         if (_currentHealth < 0)
         {
-            Destroy(gameObject);
+            NightPool.Despawn(gameObject);
             return;
         }
         _currentHealth -= damage;
