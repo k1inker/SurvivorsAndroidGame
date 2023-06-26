@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3074315710085662283}
   - component: {fileID: 474761680}
   - component: {fileID: -3003284499277143109}
+  - component: {fileID: 4241285657780151078}
   m_Layer: 6
   m_Name: Enemy1
   m_TagString: Enemy
@@ -152,8 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c8d4514b797fb47b8da253f79f9418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rateDamage: 0.5
-  _damage: 1
   _currentTarget: {fileID: 0}
   _targetVector: {x: 0, y: 0}
 --- !u!114 &3074315710085662279
@@ -235,21 +234,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   rb: {fileID: 3074315710085662276}
-  collisionOffset: 0.1
-  contactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+  isStunned: 0
+--- !u!114 &4241285657780151078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074315710085662273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9e01859c08a05469e2b9e527200c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rateDamage: 0.5
+  _damage: 1
 --- !u!1 &3074315710335653191
 GameObject:
   m_ObjectHideFlags: 0

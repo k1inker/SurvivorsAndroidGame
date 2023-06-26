@@ -1,24 +1,17 @@
-using System;
-using System.Collections.Generic;
+using NTC.Global.Pool;
 using UnityEngine;
-[CreateAssetMenu]
-public class StageEvent : ScriptableObject
+using Zenject;
+
+public abstract class StageEvent : ScriptableObject
 {
-    public float time;
-    public GameObject enemyType;
-    public int countEnemy;
-
-    public bool isRepeatedEvent;
-    public float reapeatEverySeconds;
-    public int countRepeat;
-
-    public StageEvent(float time, GameObject enemyType, int countEnemy, bool isRepeatedEvent, float reapeatEverySeconds, int countRepeat)
+    [Header("General Settings")]
+    public GameObject spawnObject;
+    public int countObject;
+    public virtual void StartEvent(Vector3[] spawnPositions, DiContainer container = null)
     {
-        this.time = time;
-        this.enemyType = enemyType;
-        this.countEnemy = countEnemy;
-        this.isRepeatedEvent = isRepeatedEvent;
-        this.reapeatEverySeconds = reapeatEverySeconds;
-        this.countRepeat = countRepeat;
+        foreach (var position in spawnPositions)
+        {
+            NightPool.Spawn(spawnObject, container, position, Quaternion.identity);
+        }
     }
 }

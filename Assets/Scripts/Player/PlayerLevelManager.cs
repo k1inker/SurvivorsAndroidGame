@@ -44,6 +44,7 @@ public class PlayerLevelManager : MonoBehaviour
         {
             return;
         }
+
         selectedUpgrades.Clear();
         selectedUpgrades.AddRange(GetUpgrades(3));
 

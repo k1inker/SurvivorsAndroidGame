@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: 
   poolItems:
+  - prefab: {fileID: 6497237817512838316, guid: b093478851e76e740b4c35e3ab42d937,
+      type: 3}
+    size: 10
+    useDiContainer: 0
   - prefab: {fileID: 1682020701594704058, guid: 7f7b6bf5a56eae24197537a4ea844982,
       type: 3}
     size: 20
@@ -25,12 +29,8 @@ MonoBehaviour:
   - prefab: {fileID: 7666761292887161646, guid: 7221c983c0429364780c3f743904c19d,
       type: 3}
     size: 3
-    useDiContainer: 0
-  - prefab: {fileID: 6497237817512838316, guid: b093478851e76e740b4c35e3ab42d937,
-      type: 3}
-    size: 10
-    useDiContainer: 0
+    useDiContainer: 1
   - prefab: {fileID: 3074315710085662273, guid: e9493227b4dc4d4478e5013cb31319c8,
       type: 3}
-    size: 1
+    size: 20
     useDiContainer: 1

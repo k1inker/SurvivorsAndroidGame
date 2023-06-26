@@ -32,12 +32,9 @@ public class PlayerManager : CharacterManager
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IPickUp pickUp = collision.GetComponent<IPickUp>();
-
-        if (pickUp == null)
+        if (collision.TryGetComponent(out IPickUp pickUp))
         {
-            return;
+            pickUp.PickUpAction(this);
         }
-        pickUp.PickUpAction(this);
     }
 }

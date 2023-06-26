@@ -8,9 +8,6 @@ public abstract class CharacterLocomotionManager : MonoBehaviour, IPoolItem
     public float moveSpeed;
     public Rigidbody2D rb;
 
-    [SerializeField] protected float collisionOffset;
-    [SerializeField] protected ContactFilter2D contactFilter;
-
     protected CapsuleCollider2D _capsuleCollider;
     protected List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     protected CharacterManager _character;
