@@ -7,7 +7,9 @@ public class PlayerWeaponManager : MonoBehaviour
 {
     [SerializeField] private Transform parentObjectWeapon;
     [SerializeField] private WeaponData startWeapon;
+
     public List<WeaponBase> weapons;
+
     private PlayerManager _player;
     public Vector2 lookDirection { get; private set; } = Vector2.down;
     private void Awake()

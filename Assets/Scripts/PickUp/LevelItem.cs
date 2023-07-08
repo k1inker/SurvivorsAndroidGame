@@ -2,7 +2,7 @@ using DG.Tweening;
 using NTC.Global.Pool;
 using UnityEngine;
 
-public class LevelItem : PickUpItem, IPickUp, IPoolItem
+public class LevelItem : PickUpItem, IPickUpable, IPoolItem
 {
     public override void AnimationPickUp(PlayerManager player)
     {
@@ -16,12 +16,10 @@ public class LevelItem : PickUpItem, IPickUp, IPoolItem
     {
         transform.localScale = new Vector3(3, 3, 3);
     }
-
     public void OnSpawn()
     {
         isPickedUp = false;
     }
-
     public override void PickUpAction(PlayerManager player)
     {
         if (!isPickedUp)

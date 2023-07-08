@@ -11,22 +11,19 @@ public class SimpleProjectile : Projectile
     {
         IDamageable damageableObject = collision.GetComponent<IDamageable>();
 
-        if (collision.GetComponent<IDamageable>() == null)
+        if (damageableObject == null)
             return;
 
         if (isPushBack)
         {
-            CharacterLocomotionManager character = collision.GetComponent<CharacterLocomotionManager>();
+            CharacterMovement character = collision.GetComponent<CharacterMovement>();
             if (character != null)
             {
                 Vector2 directionPush = collision.transform.position - transformPlayer.position;
                 character.KnockBack(directionPush.normalized, pushBackForce);
             }
         }
-        if (damageableObject != null)
-        {
-            damageableObject.TakeDamage(damage);
-        }    
+        damageableObject.TakeDamage(damage);   
 
         if (!isThrough)
         {

@@ -35,7 +35,7 @@ public class EnemyStatsManager : CharacterStatsManager, IDamageable, IPoolItem
         _indicator.SpawnIndicator(transform.position, countDamage);
         base.TakeDamage(countDamage);
     }
-    public override void HandlerDeath()
+    protected override void HandlerDeath()
     {
         base.HandlerDeath();
         OnEnemyDeath?.Invoke();

@@ -45,7 +45,7 @@ public class CharacterStatsManager : MonoBehaviour
             currentHealth += countHeal;
         }
     }
-    public virtual void HandlerDeath()
+    protected virtual void HandlerDeath()
     {
         OnDeathCharacter?.Invoke(ConstantName.Animation.Death);
     }

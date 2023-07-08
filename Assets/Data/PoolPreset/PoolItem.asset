@@ -30,6 +30,10 @@ MonoBehaviour:
       type: 3}
     size: 3
     useDiContainer: 1
+  - prefab: {fileID: 6642295034130949703, guid: 8c97bcc372d0d134e8a76e937b15cac5,
+      type: 3}
+    size: 5
+    useDiContainer: 1
   - prefab: {fileID: 3074315710085662273, guid: e9493227b4dc4d4478e5013cb31319c8,
       type: 3}
     size: 20

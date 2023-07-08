@@ -1,9 +1,9 @@
+using NTC.Global.Pool;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class DamageableCollider : MonoBehaviour
+public class DamageableCollider : MonoBehaviour, IPoolItem
 {
     [Inject] private PlayerManager _playerManager;
 
@@ -16,7 +16,7 @@ public class DamageableCollider : MonoBehaviour
     {
         if (collision.gameObject == _playerManager.gameObject)
         {
-            if (_dealingDamageCoroutine == null)
+            if (_dealingDamageCoroutine == null && gameObject.activeSelf)
             {
                 _dealingDamageCoroutine = StartCoroutine(DealingDamage());
             }
@@ -41,12 +41,14 @@ public class DamageableCollider : MonoBehaviour
             yield return new WaitForSeconds(_rateDamage);
         }
     }
-    private void OnEnable()
+    public void OnSpawn()
     {
         _dealingDamageCoroutine = null;
     }
-    private void OnDisable()
+
+    public void OnDespawn()
     {
-        StopCoroutine(_dealingDamageCoroutine);
+        if (_dealingDamageCoroutine != null)
+            StopCoroutine(_dealingDamageCoroutine);
     }
 }

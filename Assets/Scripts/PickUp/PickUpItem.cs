@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class PickUpItem : MonoBehaviour, IPickUp
+public abstract class PickUpItem : MonoBehaviour, IPickUpable
 {
     [SerializeField] protected bool isPickedUp = false;
 

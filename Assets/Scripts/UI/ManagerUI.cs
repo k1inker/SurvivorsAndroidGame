@@ -21,7 +21,7 @@ public class ManagerUI : MonoBehaviour
 
     private string[] contextUpgrades;
     private int selectedUpgradeButton = 0;
-    private void Awake()
+    private void OnEnable()
     {
         _playerManager.playerStatsManager.OnMaxHealthChange += SetMaxHealthValue;
         _playerManager.playerStatsManager.OnHealthChange += SetHealthValue;
@@ -32,6 +32,18 @@ public class ManagerUI : MonoBehaviour
         _playerManager.playerLevelManager.OnChooseUpgrade += ShowUpgradePanel;
 
         _stageManager.OnTimeChange += SetTime;
+    }
+    private void OnDisable()
+    {
+        _playerManager.playerStatsManager.OnMaxHealthChange -= SetMaxHealthValue;
+        _playerManager.playerStatsManager.OnHealthChange -= SetHealthValue;
+
+        _playerManager.playerLevelManager.OnLevelUp -= SetMaxExperienceValue;
+        _playerManager.playerLevelManager.OnExperienceChange -= SetExperienceValue;
+
+        _playerManager.playerLevelManager.OnChooseUpgrade -= ShowUpgradePanel;
+
+        _stageManager.OnTimeChange -= SetTime;
     }
     public void SetMaxHealthValue(int maxHealth)
     {

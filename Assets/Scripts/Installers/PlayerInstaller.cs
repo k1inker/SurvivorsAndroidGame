@@ -7,5 +7,6 @@ public class PlayerInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<PlayerManager>().FromInstance(_playerUnit).AsSingle().NonLazy();
+        Container.QueueForInject(_playerUnit);
     }
 }

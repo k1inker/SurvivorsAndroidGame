@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 3074315710085662282}
   - component: {fileID: 3074315710085662283}
   - component: {fileID: 474761680}
-  - component: {fileID: -3003284499277143109}
   - component: {fileID: 4241285657780151078}
+  - component: {fileID: 1291107051888948258}
   m_Layer: 6
   m_Name: Enemy1
   m_TagString: Enemy
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.000000014901161}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -139,7 +139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9375, y: 0.9375}
+  m_Size: {x: 0.9375, y: 0.6899631}
   m_EdgeRadius: 0
 --- !u!114 &3074315710085662281
 MonoBehaviour:
@@ -220,21 +220,6 @@ MonoBehaviour:
   _dropItems:
   - {fileID: 1682020701594704058, guid: 7f7b6bf5a56eae24197537a4ea844982, type: 3}
   _chance: 1
---- !u!114 &-3003284499277143109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3074315710085662273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54bd32d3ab36ec84dafb7a0d27b719ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 100
-  rb: {fileID: 3074315710085662276}
-  isStunned: 0
 --- !u!114 &4241285657780151078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +234,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rateDamage: 0.5
   _damage: 1
+--- !u!114 &1291107051888948258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074315710085662273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a70da17459f624d804d9856819dccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 100
 --- !u!1 &3074315710335653191
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +292,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003139806, y: -0.4018442}
-  m_Size: {x: 0.9640684, y: 0.19631341}
+  m_Offset: {x: 0, y: -0.24}
+  m_Size: {x: 0.96, y: 0.2}
   m_Direction: 1

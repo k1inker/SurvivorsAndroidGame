@@ -1,25 +1,29 @@
-using System.Collections;
 using UnityEngine;
 using Zenject;
 
-public class EnemyManager : CharacterManager
+[RequireComponent(typeof(EnemyStatsManager))]
+[RequireComponent(typeof(CharacterMovement))]
+public class EnemyManager : MonoBehaviour
 {
     public EnemyStatsManager enemyStats { get; private set; }
-    public EnemyLocomotionManager enemyLocomotion { get; private set; }
+    public CharacterMovement enemyLocomotion { get; private set; }
 
     [Header("Information Target")]
     [SerializeField] [Inject] private PlayerManager _currentTarget;
     [SerializeField] private Vector2 _targetVector;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         enemyStats = GetComponent<EnemyStatsManager>();
-        enemyLocomotion = GetComponent<EnemyLocomotionManager>();
+        enemyLocomotion = GetComponent<CharacterMovement>();
     }
-    private void Start()
+    private void OnEnable()
     {
         enemyStats.OnEnemyDeath += DeathingHandler;
+    }
+    private void OnDisable()
+    {
+        enemyStats.OnEnemyDeath -= DeathingHandler;
     }
     private void FixedUpdate()
     {

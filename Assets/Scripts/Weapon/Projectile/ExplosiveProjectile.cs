@@ -33,7 +33,7 @@ public class ExplosiveProjectile : Projectile
         {
             if (isPushBack)
             {
-                CharacterLocomotionManager character = collider.GetComponent<CharacterLocomotionManager>();
+                CharacterMovement character = collider.GetComponent<CharacterMovement>();
                 if(character != null)
                     character.KnockBack(collider.transform.position - transform.position, pushBackForce);
             }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -24,12 +23,12 @@ public class Item : ScriptableObject
         stats = new ItemStats();
         upgrades = new UpgradeData[0];
     }
-    public void Equip(CharacterManager player)
+    public void Equip(CharacterStatsManager playerStats)
     {
-        player.characterStatsManager.armor += stats.armor;
+        playerStats.armor += stats.armor;
     }
-    public void UnEquip(CharacterManager player)
+    public void UnEquip(CharacterStatsManager playerStats)
     {
-        player.characterStatsManager.armor -= stats.armor;
+        playerStats.armor -= stats.armor;
     }
 }

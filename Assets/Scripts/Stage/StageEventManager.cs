@@ -1,4 +1,3 @@
-using NTC.Global.Pool;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +31,7 @@ public class StageEventManager : MonoBehaviour
         {
             _randomEventPerSeconds += _randomEventPerSeconds;
             int idEvent = Random.Range(0, randomEvents.Length - 1);
-            randomEvents[idEvent].StartEvent(GetRandomPositions(randomEvents[idEvent].countObject));
+            randomEvents[idEvent].StartEvent(GetRandomPositions(randomEvents[idEvent].countObject), _container);
         }
     }
     private void SwitchingRegularEvent()

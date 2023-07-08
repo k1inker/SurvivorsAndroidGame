@@ -1,26 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : CharacterManager
+#region RequireComponent
+[RequireComponent(typeof(InputHandler))]
+[RequireComponent(typeof(CharacterMovement))]
+[RequireComponent(typeof(PlayerStatsManager))]
+[RequireComponent(typeof(PlayerLevelManager))]
+[RequireComponent(typeof(PlayerWeaponManager))]
+[RequireComponent(typeof(PassiveItem))]
+#endregion
+public class PlayerManager : MonoBehaviour
 {
     public InputHandler inputHandler { get; private set; }
-    public PlayerLocomotion playerLocomotion { get; private set; }
+    public CharacterMovement playerLocomotion { get; private set; }
     public PlayerStatsManager playerStatsManager { get; private set; }
     public PlayerLevelManager playerLevelManager { get; private set; }
     public PlayerWeaponManager playerWeaponManager { get; private set; }
     public PassiveItem passiveItem { get; private set; }
-    public ManagerUI uiManager { get; private set; }
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         inputHandler = GetComponent<InputHandler>();
-        playerLocomotion = GetComponent<PlayerLocomotion>();
+        playerLocomotion = GetComponent<CharacterMovement>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerLevelManager = GetComponent<PlayerLevelManager>();
         playerWeaponManager = GetComponent<PlayerWeaponManager>();
         passiveItem = GetComponent<PassiveItem>();
-        uiManager = GetComponentInChildren<ManagerUI>();
     }
     private void Update()
     {
@@ -32,7 +35,7 @@ public class PlayerManager : CharacterManager
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IPickUp pickUp))
+        if (collision.TryGetComponent(out IPickUpable pickUp))
         {
             pickUp.PickUpAction(this);
         }

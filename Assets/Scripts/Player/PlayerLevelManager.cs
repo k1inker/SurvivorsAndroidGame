@@ -26,10 +26,16 @@ public class PlayerLevelManager : MonoBehaviour
         _player = GetComponent<PlayerManager>();
 
     }
-    private void Start()
+    private void OnEnable()
     {
         OnExperienceChange += LevelUp;
-
+    }
+    private void OnDisable()
+    {
+        OnExperienceChange -= LevelUp;
+    }
+    private void Start()
+    {
         OnExperienceChange?.Invoke(_currentValueOnLevel);
         OnLevelUp?.Invoke(_maxValuePerLevel);
     }
