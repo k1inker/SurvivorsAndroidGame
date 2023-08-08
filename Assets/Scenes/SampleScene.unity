@@ -111307,10 +111307,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1556680169914527230, guid: aaf34c49d6681d74fae6c41581d83034,
+        type: 3}
+      propertyPath: upgrades.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556680169914527230, guid: aaf34c49d6681d74fae6c41581d83034,
+        type: 3}
+      propertyPath: upgrades.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 16c24b1ee9dc4df4da6ba4a9dffe8353,
+        type: 2}
+    - target: {fileID: 1556680169914527230, guid: aaf34c49d6681d74fae6c41581d83034,
+        type: 3}
+      propertyPath: upgrades.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 47208445644bc574d967695c0bde2e76,
+        type: 2}
+    - target: {fileID: 1556680169914527230, guid: aaf34c49d6681d74fae6c41581d83034,
+        type: 3}
+      propertyPath: upgrades.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 47208445644bc574d967695c0bde2e76,
+        type: 2}
     - target: {fileID: 3698998159347433174, guid: aaf34c49d6681d74fae6c41581d83034,
         type: 3}
       propertyPath: moveSpeed
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 8748275932458542534, guid: aaf34c49d6681d74fae6c41581d83034,
+        type: 3}
+      propertyPath: startWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 843c411cee0fee74d9ccb0e1b0dd2d80,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaf34c49d6681d74fae6c41581d83034, type: 3}

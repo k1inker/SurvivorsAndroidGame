@@ -9,20 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a7e0d5899a23a74983db2f8d3ae60c0, type: 3}
-  m_Name: Khife
+  m_Script: {fileID: 11500000, guid: beb0c150d9c7d144399a3b7f871b920b, type: 3}
+  m_Name: Knife
   m_EditorClassIdentifier: 
+  _initWeaponStats:
+    isThrough: 1
+    isPushBack: 1
+    reloadDelay: 1
+    countAttack: 1
+    damageWeapon: 6
+    speedWeapon: 4
+    timeAlive: 7
+    pushBackForce: 5
   weaponStats:
     isThrough: 1
     isPushBack: 1
-    reloadDelay: 0.7
+    reloadDelay: 1
     countAttack: 1
-    damageWeapon: 4
+    damageWeapon: 8
     speedWeapon: 4
-    timeAlive: 6
+    timeAlive: 7
     pushBackForce: 5
   bulletPrefab: {fileID: 994823424353672070, guid: 489c428ed1806db4b92a4bea55917f7d,
     type: 3}
-  weaponBasePrefab: {fileID: 6441737280133185102, guid: 1c84b94be311baa4f9a0c9206fe2838f,
-    type: 3}
-  upgradesData: []
+  upgradesData:
+  - {fileID: 11400000, guid: 754c4d54f7fd1744592062cbd94b2d14, type: 2}

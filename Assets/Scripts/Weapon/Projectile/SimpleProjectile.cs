@@ -1,10 +1,9 @@
 using UnityEngine;
-
 public class SimpleProjectile : Projectile
 {
     public override void ActionAtTheDestinationPoint()
     {
-        DestoyProjectile();
+        destroyHandler.DestroyObject();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

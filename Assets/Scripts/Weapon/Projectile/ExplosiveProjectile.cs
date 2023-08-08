@@ -1,23 +1,17 @@
 using UnityEngine;
 public class ExplosiveProjectile : Projectile
 {
-    [SerializeField] private LayerMask _enemylayerMask;
-
     [SerializeField] private float _radiusExplosion;
 
     [SerializeField] private GameObject _effectExplosion;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if(isThrough)
         {
             GetComponent<Collider2D>().enabled = false;
         }
     }
-    //public void SettingsProjectile(WeaponStats weaponStats, float radiusExplosion)
-    //{
-    //    base.SettingsProjectile(weaponStats);
-    //    _radiusExplosion = radiusExplosion;
-    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<IDamageable>() == null)
@@ -29,7 +23,7 @@ public class ExplosiveProjectile : Projectile
     public override void ActionAtTheDestinationPoint()
     {
         Instantiate(_effectExplosion, transform.position, Quaternion.identity);
-        foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, _radiusExplosion, _enemylayerMask))
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, _radiusExplosion))
         {
             if (isPushBack)
             {
@@ -43,6 +37,6 @@ public class ExplosiveProjectile : Projectile
                 damageableObject.TakeDamage(damage);
             }
         }
-        DestoyProjectile();
+        destroyHandler.DestroyObject();
     }
 }

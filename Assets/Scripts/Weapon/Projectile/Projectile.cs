@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[RequireComponent(typeof(DestroyObjects))]
 public abstract class Projectile : MonoBehaviour
 {
     protected int damage;
@@ -8,22 +8,19 @@ public abstract class Projectile : MonoBehaviour
     protected float pushBackForce;
 
     protected Transform transformPlayer; // for defenition direction for pushBack
-    public void SettingsProjectile(WeaponStats weaponStats, Transform player)
+    protected DestroyObjects destroyHandler;
+    protected virtual void Awake()
+    {
+        destroyHandler = GetComponent<DestroyObjects>();
+    }
+    public void SetupProjectile(WeaponStats weaponStats, Transform player)
     {
         damage = weaponStats.damageWeapon;
         isThrough = weaponStats.isThrough;
         isPushBack = weaponStats.isPushBack;
         pushBackForce = weaponStats.pushBackForce;
         transformPlayer = player;
-        DestoyTimer(weaponStats.timeAlive);
+        destroyHandler.Initialize(weaponStats.timeAlive,false,true);
     }
     public abstract void ActionAtTheDestinationPoint();
-    private void DestoyTimer(float time)
-    {
-        Invoke(nameof(DestoyProjectile), time);
-    }
-    protected void DestoyProjectile()
-    {
-        Destroy(gameObject);
-    }
 }

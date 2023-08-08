@@ -9,20 +9,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a7e0d5899a23a74983db2f8d3ae60c0, type: 3}
+  m_Script: {fileID: 11500000, guid: f07e9114787b55644a61733d377eca50, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
+  _initWeaponStats:
+    isThrough: 1
+    isPushBack: 1
+    reloadDelay: 3
+    countAttack: 1
+    damageWeapon: 5
+    speedWeapon: 0.5
+    timeAlive: 7
+    pushBackForce: 5
   weaponStats:
     isThrough: 1
     isPushBack: 1
     reloadDelay: 3
     countAttack: 1
     damageWeapon: 5
-    speedWeapon: 0.2
-    timeAlive: 10
+    speedWeapon: 1
+    timeAlive: 7
     pushBackForce: 5
   bulletPrefab: {fileID: 4915317703386542373, guid: d5e40272291e4d3419d7c6ce861b171a,
     type: 3}
-  weaponBasePrefab: {fileID: 7119580545399453234, guid: 93bb7fc2336464048aa91cbdbec21024,
-    type: 3}
   upgradesData: []
+  _radiusPotentialDrop: 2
+  _radiusExplosion: 2

@@ -27,8 +27,18 @@ public class WeaponStats
         this.timeAlive = timeAlive;
         this.pushBackForce = pushBackForce;
     }
-
-    internal void SumSimpleStats(WeaponStats upgradeStats)
+    public void SetStatsByWeaponStats(WeaponStats weaponStats)
+    {
+        isThrough = weaponStats.isThrough;
+        isPushBack = weaponStats.isPushBack;
+        reloadDelay = weaponStats.reloadDelay;
+        countAttack = weaponStats.countAttack;
+        damageWeapon = weaponStats.damageWeapon;
+        speedWeapon = weaponStats.speedWeapon;
+        timeAlive = weaponStats.timeAlive;
+        pushBackForce = weaponStats.pushBackForce;
+    }
+    public void SumSimpleStats(WeaponStats upgradeStats)
     {
         reloadDelay -= upgradeStats.reloadDelay;
         countAttack += upgradeStats.countAttack;
@@ -38,15 +48,32 @@ public class WeaponStats
         pushBackForce += upgradeStats.pushBackForce;
     }
 }
-[CreateAssetMenu(menuName = "Weapon")]
-public class WeaponData : ScriptableObject
+public abstract class WeaponData : ScriptableObject
 {
+    [SerializeField] private WeaponStats _initWeaponStats;
     public WeaponStats weaponStats;
 
     [Header("Prefab")]
-    [SerializeField] public GameObject bulletPrefab;
-    [SerializeField] public GameObject weaponBasePrefab;
+    [SerializeField] protected GameObject bulletPrefab;
 
     [Header("Upgrades")]
     public UpgradeData[] upgradesData;
+    public virtual void Initialize()
+    {
+        weaponStats.SetStatsByWeaponStats(_initWeaponStats);
+    }
+    protected virtual void ProjectileSettings(GameObject projectile, Transform player)
+    {
+        Projectile proj = projectile.GetComponent<Projectile>();
+
+        if(proj == null)
+            return;
+
+        proj.SetupProjectile(weaponStats, player);
+    }
+    public abstract void Attack(PlayerWeaponManager weaponManager);
+    public virtual void AddStatsWeapon(WeaponStats additionalStats)
+    {
+        weaponStats.SumSimpleStats(additionalStats);
+    }
 }

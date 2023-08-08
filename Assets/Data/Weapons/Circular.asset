@@ -9,20 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a7e0d5899a23a74983db2f8d3ae60c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 660eb1b63e7bd8f429ccb0c1fa4cae1c, type: 3}
   m_Name: Circular
   m_EditorClassIdentifier: 
+  _initWeaponStats:
+    isThrough: 0
+    isPushBack: 0
+    reloadDelay: 0
+    countAttack: 0
+    damageWeapon: 0
+    speedWeapon: 0
+    timeAlive: 0
+    pushBackForce: 0
   weaponStats:
-    isThrough: 1
-    isPushBack: 1
-    reloadDelay: 10
-    countAttack: 1
-    damageWeapon: 4
-    speedWeapon: 180
-    timeAlive: 8
-    pushBackForce: 2
-  bulletPrefab: {fileID: 4915317703386542373, guid: f43dd0e133e13c54da55e006f68e1a44,
-    type: 3}
-  weaponBasePrefab: {fileID: 469493015132496596, guid: 819321a1aae1126429c06830e56edffc,
-    type: 3}
+    isThrough: 0
+    isPushBack: 0
+    reloadDelay: 0
+    countAttack: 0
+    damageWeapon: 0
+    speedWeapon: 0
+    timeAlive: 0
+    pushBackForce: 0
+  bulletPrefab: {fileID: 0}
   upgradesData: []
+  _offsetRadius: 0

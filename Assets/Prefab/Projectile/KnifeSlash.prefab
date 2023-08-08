@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedd1d3919bc66b4cae0e8c81cffa86b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isDestroyByTime: 0
+  _timeAlive: 10
+  _isPoolObject: 0
 --- !u!114 &5123557069916910973
 MonoBehaviour:
   m_ObjectHideFlags: 0

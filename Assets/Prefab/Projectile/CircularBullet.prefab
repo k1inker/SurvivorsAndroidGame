@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4915317703386542375}
   - component: {fileID: 4915317703386542374}
   - component: {fileID: 4915317703386542378}
+  - component: {fileID: 1674393715330548976}
   m_Layer: 0
   m_Name: CircularBullet
   m_TagString: Untagged
@@ -137,3 +138,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d550e0108f5b3b9479c797e6abdae1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1674393715330548976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915317703386542373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fedd1d3919bc66b4cae0e8c81cffa86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startOnAwake: 0
+  _isDestroyByTime: 0
+  _isPoolObject: 0
+  _timeAlive: 0
